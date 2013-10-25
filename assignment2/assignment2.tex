@@ -51,8 +51,8 @@ WS 2013/2014}}
 		\end{flalign*}
 		We estimate the houses value is \EUR{210,000}, since the text states that \EUR{100,000} is less than half the value.
 		\begin{flalign*}
-		\lambda(\alpha_1|f)&=111100 \text{\euro} & \lambda(\alpha_1|\neg f)&=1100 \text{\euro}\\
-		\lambda(\alpha_2|f)&=210000 \text{\euro} & \lambda(\alpha_1|\neg f)&=0 \text{\euro}\\
+		\lambda(\alpha_1|f)&=1100 \text{\euro} & \lambda(\alpha_1|\neg f)&=1100 \text{\euro}\\
+		\lambda(\alpha_2|f)&=110000 \text{\euro} & \lambda(\alpha_1|\neg f)&=0 \text{\euro}\\
 				\end{flalign*}
 		\begin{enumerate}[label={(\alph*)}]
 		\item				
@@ -65,26 +65,22 @@ WS 2013/2014}}
 		Compute $R(\alpha_1|x)$ and $R(\alpha_2|x)$:\\
 		\begin{align*}
 		    P(\neg f|x) &= 1 - P(f|x) = 0.99\\
-			R(\alpha_1|x) &= \lambda(\alpha_1|f)P(f|x) + \lambda(\alpha_1|\neg f)P(\neg f|x) = 111100\text{\euro} * 0.01 + 1100\text{\euro} * 0.99 = 2200\text{\euro}\\
-			R(\alpha_2|x) &= \lambda(\alpha_2|f)P(f|x) + \lambda(\alpha_2|\neg f)P(\neg f|x) = 210000\text{\euro} * 0.01 + 0\text{\euro} * 0.99 = 2100\text{\euro}
+			R(\alpha_1|x) &= \lambda(\alpha_1|f)P(f|x) + \lambda(\alpha_1|\neg f)P(\neg f|x) = 1100\text{\euro} * 0.01 + 1100\text{\euro} * 0.99 = 1100\text{\euro}\\
+			R(\alpha_2|x) &= \lambda(\alpha_2|f)P(f|x) + \lambda(\alpha_2|\neg f)P(\neg f|x) = 110000\text{\euro} * 0.01 + 0\text{\euro} * 0.99 = 1100\text{\euro}
 		\end{align*}
-		Since $R(\alpha_2|x)<R(\alpha_1|x)$ not buying an insurance would be more viable.
+		Since $R(\alpha_2|x)=R(\alpha_1|x)$ no option would be more viable than the other.
+		\item insert text
 	\end{enumerate}
-\section{Exercise}
-see attached documents
-\section{Exercise}
-\begin{enumerate}[label={(\alph*)}]
-	\item All classifiers can be used to fit the data perfectly, when we use the correct parameters.
-For example classifier A divides the data with parameter a = 0.5 perfectly.
-The problem is to generalize correctly and not to overfit the data.
-Since we have only a few datapoints we want to be as general as possible.
-That is why we have chosen classifier B to be the optimal classifier.
-	\item see attached documents
-	\item Computational aspects:
-Since the learn algorithm uses the linear classifier with a different parameter set, which is also linear,
-the learn algortihm itself is linear. The time it consumes is minimal because it stops as soon as the first
-solution has been found.
+	\section{Exercise}
+		\begin{enumerate}[label={(\alph*)}]
+			\item insert text
+			\item insert text
+		\end{enumerate}
+	\section{Exercise}
+		\begin{enumerate}[label={(\alph*)}]
+			\item insert text
+			\item insert text
+		\end{enumerate}
+	\section{Exercise}
 
-Model selection: In the case that more than one parameter perfectly classifies the data we would choose the parameter, for which the sum of the smallest distances of the datapoints of one class to the segregation line, is closest to the other classes smallest distance of the datapoints. Since we're using the classifier from 1.(b), which linearly segregates the two classes of datapoints, there is no danger of overfitting the data. Our algorithm however just chooses the first parameter that fits.
-\end{enumerate}
 \end{document}
