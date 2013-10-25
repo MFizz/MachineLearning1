@@ -1,0 +1,63 @@
+
+
+
+\documentclass[a4paper]{article}
+
+% english and utf8
+\usepackage[british]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[square]{natbib}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\setcounter{tocdepth}{1}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{eurosym}
+
+
+%\usepackage{tikz}
+%\usetikzlibrary{calc, trees, positioning, arrows, shapes, shapes.multipart, shadows, matrix, decorations.pathreplacing, decorations.pathmorphing}
+
+\usepackage{enumitem} 
+\usepackage{url}
+\urldef{\mail}\path|mitja.richter@gmail.com|
+%\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+%\noindent\keywordname\enspace\ignorespaces#1}
+
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\renewcommand{\labelenumii}{\labelenumi\arabic{enumii}.}
+\renewcommand{\labelenumiii}{\labelenumii\arabic{enumiii}.}
+
+\begin{document}
+
+% first the title is needed
+\title{Maschinelles Lernen 1 - Assignment 1\\
+\small{Technische Universität Berlin\\
+WS 2013/2014}}
+
+% the name(s) of the author(s) follow(s) next
+\author{\small{Christoph Conrads (315565)}\and \small{Antje Relitz (327289)}  \and \small{Benjamin Pietrowicz (332542)} \and \small{Mitja Richter (324680)} } 
+
+\maketitle
+
+\section{Exercise}
+see attached documents
+\section{Exercise}
+see attached documents
+\section{Exercise}
+\begin{enumerate}[label={(\alph*)}]
+	\item All classifiers can be used to fit the data perfectly, when we use the correct parameters.
+For example classifier A divides the data with parameter a = 0.5 perfectly.
+The problem is to generalize correctly and not to overfit the data.
+Since we have only a few datapoints we want to be as general as possible.
+That is why we have chosen classifier B to be the optimal classifier.
+	\item see attached documents
+	\item Computational aspects:
+Since the learn algorithm uses the linear classifier with a different parameter set, which is also linear,
+the learn algortihm itself is linear. The time it consumes is minimal because it stops as soon as the first
+solution has been found.
+
+Model selection: In the case that more than one parameter perfectly classifies the data we would choose the parameter, for which the sum of the smallest distances of the datapoints of one class to the segregation line, is closest to the other classes smallest distance of the datapoints. Since we're using the classifier from 1.(b), which linearly segregates the two classes of datapoints, there is no danger of overfitting the data. Our algorithm however just chooses the first parameter that fits.
+\end{enumerate}
+\end{document}
