@@ -77,9 +77,32 @@ WS 2013/2014}}
 			\item insert text
 		\end{enumerate}
 	\section{Exercise}
+	
 		\begin{enumerate}[label={(\alph*)}]
-			\item insert text
-			\item insert text
+		\item
+			\begin{align*}
+			P(\omega_2|x) &\leq P(\omega_1|x)\\
+			\Leftrightarrow \qquad \frac{P(x|\omega_2)P(\omega_2)}{P(x)} &\leq \frac{P(x|\omega_2)P(\omega_2)}{P(x)}\\
+			\Leftrightarrow \qquad P(x|\omega_2)P(\omega_2)&\leq P(x|\omega_2)P(\omega_2)\\
+			\Leftrightarrow \qquad \frac{1}{\sqrt{2\pi}\sigma}e^{ \displaystyle\frac{(x+\mu)^2}{2\sigma^2}}P(\omega_2) &\leq \frac{1}{\sqrt{2\pi}\sigma}e^{\displaystyle \frac{(x-\mu)^2}{2\sigma^2}}P(\omega_1)\\
+			\Leftrightarrow \qquad e^{\displaystyle\frac{(x+\mu)^2}{2\sigma^2}}P(\omega_2) &\leq e^{\displaystyle \frac{(x-\mu)^2}{2\sigma^2}}P(\omega_1)\\
+			\Leftrightarrow \qquad \frac{(x+\mu)^2}{2\sigma^2} + \ln(P(\omega_2) &\leq \frac{(x-\mu)^2}{2\sigma^2} + \ln(P(\omega_1)\\
+			\Leftrightarrow \qquad -(x+\mu)^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -(x-\mu)^2 + 2\sigma^2\ln(P(\omega_1))\\
+			\Leftrightarrow \qquad -x^2 -x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -x^2+x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_1))\\
+			\Leftrightarrow \qquad -x^2 -x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -x^2+x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_1))\\
+			\Leftrightarrow \qquad \ln(P(\omega_2)) &\leq \frac{2x\mu}{2\sigma^2}+\ln(P(\omega_1))\\
+			\Leftrightarrow \qquad P(\omega_2) &\leq e^{\displaystyle \frac{x\mu}{\sigma^2}}P(\omega_1)
+			\end{align*}
+			Therefore:\\
+			\begin{align*}
+				\int_{x=-\infty}^\infty P(error|x)p(x)dx=\int_{x=-\infty}^\infty min[P(\omega_1|x); P(\omega_2|x)]=\int_{x=-\infty}^\infty P(\omega_2|x)p(x)dx
+			\end{align*}
+			if $P(\omega_2) \leq e^{\frac{x\mu}{\sigma^2}}P(\omega_1)$.
+			\item If we furthermore also assume $\mu_2 = -\mu_1$ for a Laplacian distribution, we need to make a differentiation.
+			\begin{itemize}
+				\item for $x\geq \mu$, $P(\omega_2)$ does not depend on $x$ any more.
+				\item for $x < \mu$, $P(\omega_2)$ does not depend on $\mu$ any more.
+			\end{itemize}
 		\end{enumerate}
 	\section{Exercise}
 
