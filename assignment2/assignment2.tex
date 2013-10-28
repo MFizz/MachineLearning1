@@ -1,17 +1,19 @@
+\documentclass[paper=a4,fontsize=10pt,DIV11,BCOR10mm]{scrartcl}
 
 
-
-\documentclass[a4paper]{article}
-
-% english and utf8
-\usepackage[british]{babel}
+\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 
 \usepackage[square]{natbib}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{amsthm}
+
 \setcounter{tocdepth}{1}
 \usepackage{graphicx}
+
 \usepackage{url}
 \usepackage{eurosym}
 
@@ -19,7 +21,8 @@
 %\usepackage{tikz}
 %\usetikzlibrary{calc, trees, positioning, arrows, shapes, shapes.multipart, shadows, matrix, decorations.pathreplacing, decorations.pathmorphing}
 
-\usepackage{enumitem} 
+
+\usepackage{enumitem}
 \usepackage{url}
 \urldef{\mail}\path|mitja.richter@gmail.com|
 %\newcommand{\keywords}[1]{\par\addvspace\baselineskip
@@ -29,19 +32,25 @@
 \renewcommand{\labelenumii}{\labelenumi\arabic{enumii}.}
 \renewcommand{\labelenumiii}{\labelenumii\arabic{enumiii}.}
 
+
+
+\titlehead{Technische Universität Berlin -- Fachgebiet Maschinelles Lernen\hfill \parbox[t]{2cm}{\includegraphics[width=2cm]{../TU_Logo_kurz_RGB_rot}}}
+
 \begin{document}
 
-% first the title is needed
 \title{Maschinelles Lernen 1 - Assignment 2\\
-\small{Technische Universität Berlin\\
-WS 2013/2014}}
+\small{Technische Universität Berlin}}
 
-% the name(s) of the author(s) follow(s) next
-\author{\small{Christoph Conrads (315565)}\and \small{Antje Relitz (327289)}  \and \small{Benjamin Pietrowicz (332542)} \and \small{Mitja Richter (324680)} } 
+
+\author{\small{Christoph Conrads (315565)}\and \small{Antje Relitz (327289)}  \and \small{Benjamin Pietrowicz (332542)} \and \small{Mitja Richter (324680)} }
+
+\date{WS 2013/2014}
 
 \maketitle
 
-\section{Exercise}
+
+
+\section{Gauging the Risk}
 	 \begin{flalign*} f& = \text{a house will be flooded} & \neg f & = \text{a house won't be flooded}\\
 		x & = \text{house stands in a high risk area} & \neg x & = \text{house stands in a low risk area}\\
 		P(f) &=0.0005 & P(\neg f)&=0.9995 \\
@@ -52,13 +61,13 @@ WS 2013/2014}}
 		\lambda(\alpha_2|f)&=100000 \text{\euro} & \lambda(\alpha_1|\neg f)&=0 \text{\euro}\\
 				\end{flalign*}
 		\begin{enumerate}[label={(\alph*)}]
-		\item				
+		\item
 				Bayes Rule: $$ P(A|B)=\frac{P(B|A)P(A)}{P(B)}$$\\
-				Compute	$P(f|x)$: 
+				Compute	$P(f|x)$:
 				\begin{align*}
 					P(f|x) = \frac{P(x|f)P(f)}{P(x)} = \frac{0.8 \cdot 0.0005}{0.04} = 0.01
 				\end{align*}
-		\item 
+		\item
 		Compute $R(\alpha_1|x)$ and $R(\alpha_2|x)$:\\
 		\begin{align*}
 		    P(\neg f|x) &= 1 - P(f|x) = 0.99\\
@@ -68,39 +77,74 @@ WS 2013/2014}}
 		Since $R(\alpha_2|x)<R(\alpha_1|x)$ it would be more viable not to buy an insurance.
 		\item insert text
 	\end{enumerate}
-	\section{Exercise}
-		\begin{enumerate}[label={(\alph*)}]
-			\item insert text
-			\item insert text
-		\end{enumerate}
-	\section{Exercise}
-	
-		\begin{enumerate}[label={(\alph*)}]
-		\item
-			\begin{align*}
-			P(\omega_2|x) &\leq P(\omega_1|x)\\
-			\Leftrightarrow \qquad \frac{P(x|\omega_2)P(\omega_2)}{P(x)} &\leq \frac{P(x|\omega_1)P(\omega_1)}{P(x)}\\
-			\Leftrightarrow \qquad P(x|\omega_2)P(\omega_2)&\leq P(x|\omega_1)P(\omega_1)\\
-			\Leftrightarrow \qquad \frac{1}{\sqrt{2\pi}\sigma}e^{ \displaystyle\frac{(x+\mu)^2}{2\sigma^2}}P(\omega_2) &\leq \frac{1}{\sqrt{2\pi}\sigma}e^{\displaystyle \frac{(x-\mu)^2}{2\sigma^2}}P(\omega_1)\\
-			\Leftrightarrow \qquad e^{\displaystyle\frac{(x+\mu)^2}{2\sigma^2}}P(\omega_2) &\leq e^{\displaystyle \frac{(x-\mu)^2}{2\sigma^2}}P(\omega_1)\\
-			\Leftrightarrow \qquad \frac{(x+\mu)^2}{2\sigma^2} + \ln(P(\omega_2)) &\leq \frac{(x-\mu)^2}{2\sigma^2} + \ln(P(\omega_1))\\
-			\Leftrightarrow \qquad -(x+\mu)^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -(x-\mu)^2 + 2\sigma^2\ln(P(\omega_1))\\
-			\Leftrightarrow \qquad -x^2 -x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -x^2+x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_1))\\
-			\Leftrightarrow \qquad -x^2 -x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -x^2+x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_1))\\
-			\Leftrightarrow \qquad \ln(P(\omega_2)) &\leq \frac{2x\mu}{2\sigma^2}+\ln(P(\omega_1))\\
-			\Leftrightarrow \qquad P(\omega_2) &\leq e^{\displaystyle \frac{x\mu}{\sigma^2}}P(\omega_1)
-			\end{align*}
-			Therefore:\\
-			\begin{align*}
-				\int_{x=-\infty}^\infty P(error|x)p(x)dx=\int_{x=-\infty}^\infty min[P(\omega_1|x); P(\omega_2|x)]dx=\int_{x=-\infty}^\infty P(\omega_2|x)p(x)dx
-			\end{align*}
-			if $P(\omega_2) \leq e^{\frac{x\mu}{\sigma^2}}P(\omega_1)$.
-			\item If we furthermore also assume $\mu_2 = -\mu_1$ for a Laplacian distribution, we need to make a differentiation.
-			\begin{itemize}
-				\item for $x\geq \mu$, condition for $P(\omega_2)$ does not depend on $x$ any more.
-				\item for $x < \mu$, condition for $P(\omega_2)$ does not depend on $\mu$ any more.
-			\end{itemize}
-		\end{enumerate}
-	\section{Exercise}
+
+
+
+
+
+\section{Bounds on the Error}
+
+\subsection*{a)}
+
+\begin{proof}
+We have
+\[ \min [ P(\omega_1|x), P(\omega_2)|x) ] \stackrel{!}{\leq} 2 P(\omega_1|x) P(\omega_2|x) \]
+WLOG let $P(\omega_1 | x) \leq P(\omega_2 | x)$ so that $0 \leq P(\omega_1|x) \leq 0.5$. Then
+\[ P(\omega_1|x) \leq 2 P(\omega_1|x) P(\omega_2|x). \]
+It holds that $P(\omega_2|x) = 1 - P(\omega_1|x)$ so
+\begin{flalign*}
+	P(\omega_1|x) &\leq 2 P(\omega_1|x) (1 - P(\omega_1|x)) \\
+	&\leq 2 P(\omega_1|x) - 2 P(\omega_1|x)^2 \Leftrightarrow \\
+	2 P(\omega_1|x)^2 &\leq P(\omega_1|x)
+\end{flalign*}
+For $P(\omega_1|x) = 0$, the inequality holds. Otherwise we can divide by that term and get
+\[ P(\omega_1|x) \leq 0.5 \]
+which is fulfilled because of our assumptions.
+\end{proof}
+
+
+
+\subsection*{b)}
+
+Let $P(\omega_1|x) = P(\omega_2|x) = 0.5$. Then
+\begin{flalign*}
+	P(\text{error}|x) = \min [ P(\omega_1|x, P(\omega_2|x) ] &\stackrel{!}{\leq} \alpha P(\omega_1|x) P(\omega_2|x) \\
+	0.5 &\leq 0.25 \alpha \Leftrightarrow \\
+	\alpha &\geq 2
+\end{flalign*}
+which violates the assumption $\alpha < 2$.
+
+
+
+
+
+\section{Gaussian Densities}
+
+\begin{enumerate}[label={(\alph*)}]
+\item
+	\begin{align*}
+	P(\omega_2|x) &\leq P(\omega_1|x)\\
+	\Leftrightarrow \qquad \frac{P(x|\omega_2)P(\omega_2)}{P(x)} &\leq \frac{P(x|\omega_1)P(\omega_1)}{P(x)}\\
+	\Leftrightarrow \qquad P(x|\omega_2)P(\omega_2)&\leq P(x|\omega_1)P(\omega_1)\\
+	\Leftrightarrow \qquad \frac{1}{\sqrt{2\pi}\sigma}e^{ \displaystyle\frac{(x+\mu)^2}{2\sigma^2}}P(\omega_2) &\leq \frac{1}{\sqrt{2\pi}\sigma}e^{\displaystyle \frac{(x-\mu)^2}{2\sigma^2}}P(\omega_1)\\
+	\Leftrightarrow \qquad e^{\displaystyle\frac{(x+\mu)^2}{2\sigma^2}}P(\omega_2) &\leq e^{\displaystyle \frac{(x-\mu)^2}{2\sigma^2}}P(\omega_1)\\
+	\Leftrightarrow \qquad \frac{(x+\mu)^2}{2\sigma^2} + \ln(P(\omega_2)) &\leq \frac{(x-\mu)^2}{2\sigma^2} + \ln(P(\omega_1))\\
+	\Leftrightarrow \qquad -(x+\mu)^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -(x-\mu)^2 + 2\sigma^2\ln(P(\omega_1))\\
+	\Leftrightarrow \qquad -x^2 -x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -x^2+x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_1))\\
+	\Leftrightarrow \qquad -x^2 -x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -x^2+x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_1))\\
+	\Leftrightarrow \qquad \ln(P(\omega_2)) &\leq \frac{2x\mu}{2\sigma^2}+\ln(P(\omega_1))\\
+	\Leftrightarrow \qquad P(\omega_2) &\leq e^{\displaystyle \frac{x\mu}{\sigma^2}}P(\omega_1)
+	\end{align*}
+	Therefore:\\
+	\begin{align*}
+		\int_{x=-\infty}^\infty P(error|x)p(x)dx=\int_{x=-\infty}^\infty min[P(\omega_1|x); P(\omega_2|x)]dx=\int_{x=-\infty}^\infty P(\omega_2|x)p(x)dx
+	\end{align*}
+	if $P(\omega_2) \leq e^{\frac{x\mu}{\sigma^2}}P(\omega_1)$.
+	\item If we furthermore also assume $\mu_2 = -\mu_1$ for a Laplacian distribution, we need to make a differentiation.
+	\begin{itemize}
+		\item for $x\geq \mu$, condition for $P(\omega_2)$ does not depend on $x$ any more.
+		\item for $x < \mu$, condition for $P(\omega_2)$ does not depend on $\mu$ any more.
+	\end{itemize}
+\end{enumerate}
 
 \end{document}
