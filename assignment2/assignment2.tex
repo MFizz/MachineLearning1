@@ -153,9 +153,9 @@ We assume that $P(x|\omega_1) = c e^{-\abs{x-\mu_1}/\sigma^2}, \mu_1 \in \mathbb
 For different $x$ we get
 \begin{flalign*}
 	\ln \left( \frac{P(x|\omega_2)}{P(x|\omega_1)} \right) = \begin{cases}
-		\frac{\mu_1 + \mu_2}{\sigma^2},          & \text{if } x \leq \mu_1 \\
-		\frac{\mu_1 + \mu_2 - 2x}{\sigma^2},     & \text{if } \mu_1 < x < \mu_2 \\
-		\frac{\mu_1 - \mu_2}{\sigma^2},          & \text{if } x \geq \mu_2 \\
+		\frac{+\mu_1 - \mu_2}{\sigma^2},          & \text{if } x \leq \mu_1 \\
+		\frac{-\mu_1 - \mu_2 + 2x}{\sigma^2},     & \text{if } \mu_1 < x < \mu_2 \\
+		\frac{-\mu_1 + \mu_2}{\sigma^2},          & \text{if } x \geq \mu_2 \\
 	\end{cases}
 \end{flalign*}
 So if $x$ is outside of the open interval $(\mu_1, \mu_2)$ the conditional error does not depend on the exact value of $x$. If we assume additionally $\mu_2 = \mu_1$ for the Laplacian distribution, then $P(x|\omega_1) = P(x|\omega_2) > 0$ and using Bayes' rule gives
