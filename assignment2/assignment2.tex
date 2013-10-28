@@ -82,11 +82,11 @@ WS 2013/2014}}
 		\item
 			\begin{align*}
 			P(\omega_2|x) &\leq P(\omega_1|x)\\
-			\Leftrightarrow \qquad \frac{P(x|\omega_2)P(\omega_2)}{P(x)} &\leq \frac{P(x|\omega_2)P(\omega_2)}{P(x)}\\
-			\Leftrightarrow \qquad P(x|\omega_2)P(\omega_2)&\leq P(x|\omega_2)P(\omega_2)\\
+			\Leftrightarrow \qquad \frac{P(x|\omega_2)P(\omega_2)}{P(x)} &\leq \frac{P(x|\omega_1)P(\omega_1)}{P(x)}\\
+			\Leftrightarrow \qquad P(x|\omega_2)P(\omega_2)&\leq P(x|\omega_1)P(\omega_1)\\
 			\Leftrightarrow \qquad \frac{1}{\sqrt{2\pi}\sigma}e^{ \displaystyle\frac{(x+\mu)^2}{2\sigma^2}}P(\omega_2) &\leq \frac{1}{\sqrt{2\pi}\sigma}e^{\displaystyle \frac{(x-\mu)^2}{2\sigma^2}}P(\omega_1)\\
 			\Leftrightarrow \qquad e^{\displaystyle\frac{(x+\mu)^2}{2\sigma^2}}P(\omega_2) &\leq e^{\displaystyle \frac{(x-\mu)^2}{2\sigma^2}}P(\omega_1)\\
-			\Leftrightarrow \qquad \frac{(x+\mu)^2}{2\sigma^2} + \ln(P(\omega_2) &\leq \frac{(x-\mu)^2}{2\sigma^2} + \ln(P(\omega_1)\\
+			\Leftrightarrow \qquad \frac{(x+\mu)^2}{2\sigma^2} + \ln(P(\omega_2)) &\leq \frac{(x-\mu)^2}{2\sigma^2} + \ln(P(\omega_1))\\
 			\Leftrightarrow \qquad -(x+\mu)^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -(x-\mu)^2 + 2\sigma^2\ln(P(\omega_1))\\
 			\Leftrightarrow \qquad -x^2 -x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -x^2+x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_1))\\
 			\Leftrightarrow \qquad -x^2 -x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -x^2+x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_1))\\
