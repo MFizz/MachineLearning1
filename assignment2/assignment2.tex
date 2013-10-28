@@ -21,6 +21,10 @@
 
 
 
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+
+
+
 
 \titlehead{Technische Universität Berlin -- Fachgebiet Maschinelles Lernen\hfill \parbox[t]{2cm}{\includegraphics[width=2cm]{../TU_Logo_kurz_RGB_rot}}}
 
@@ -127,11 +131,13 @@ which violates the assumption $\alpha < 2$.
 Because $P(\text{error}|x) = P(\omega_2|x)$ and the definition of $P(\text{error}|x)$ we know that $P(\omega_2|x) \leq P(\omega_1|x)$. Using Bayes' rule, it holds that
 \[ \frac{P(x|\omega_2)P(\omega_2)}{\cancel{P(x)}} \leq \frac{P(x|\omega_1)P(\omega_1)}{\cancel{P(x)}} \]
 We reformulate this to
-\[ \frac{P(x|\omega_2)}{P(x|\omega_1)} \leq \frac{P(\omega_1)}{P(\omega_2)} \]
+\begin{equation}
+	\frac{P(x|\omega_2)}{P(x|\omega_1)} \leq \frac{P(\omega_1)}{P(\omega_2)}
+\end{equation}
 and using the definitions we get
-\[ \frac{\exp{(-(x+\mu)^2 / (2 \sigma^2))}}{\exp{(-(x-\mu)^2 / (2 \sigma^2))}} \leq \frac{P(\omega_1)}{P(\omega_2)} \]
+\[ \frac{\exp(-(x+\mu)^2 / (2 \sigma^2))}{\exp(-(x-\mu)^2 / (2 \sigma^2))} \leq \frac{P(\omega_1)}{P(\omega_2)} \]
 Applying the logarithm gives
-\[ \frac{1}{2\sigma^2} \left( (x-y)^2 - (x+y)^2 \right) = \frac{1}{2\sigma^2} (-4x\mu) \leq \ln{\frac{P(\omega_1)}{P(\omega_2)}} \]
+\[ \frac{1}{2\sigma^2} \left( (x-\mu)^2 - (x+\mu)^2 \right) = \frac{1}{2\sigma^2} (-4x\mu) \leq \ln{\frac{P(\omega_1)}{P(\omega_2)}} \]
 If we want the relationship between $P(\omega_2|x)$ and the conditional error to hold, then
 \begin{flalign*}
 	\ln P(\omega_2|x) &\leq \ln P(\omega_1|x) + \frac{2x\mu}{\sigma^2} \Leftrightarrow \\
@@ -142,11 +148,18 @@ If we want the relationship between $P(\omega_2|x)$ and the conditional error to
 
 \subsection*{b)}
 
-If we furthermore also assume $\mu_2 = -\mu_1$ for a Laplacian distribution, we need to make a differentiation.
-	\begin{itemize}
-		\item for $x\geq \mu$, condition for $P(\omega_2)$ does not depend on $x$ any more.
-		\item for $x < \mu$, condition for $P(\omega_2)$ does not depend on $\mu$ any more.
-	\end{itemize}
+We assume that $P(x|\omega_1) = c e^{-\abs{x-\mu_1}/\sigma^2}, \mu_1 \in \mathbb{R}$ and $P(x|\omega_2) = c e^{-\abs{x-\mu_2}/\sigma^2}, \mu_2 \mathbb{R}$ where $c \in \mathbb{R}$. To simplify the discussion we assume that $\mu_1 \leq \mu_2$. If we insert this into inequality~1, then
+\[ \frac{P(x|\omega_2)}{P(x|\omega_1)} = \frac{\exp(-\abs{x - \mu_2}/\sigma^2)}{\exp(-\abs{x - \mu_1}/\sigma^2)} = \exp \left( \frac{\abs{x - \mu_1} - \abs{x - \mu_2}}{\sigma^2} \right) \]
+For different $x$ we get
+\begin{flalign*}
+	\ln \left( \frac{P(x|\omega_2)}{P(x|\omega_1)} \right) = \begin{cases}
+		\frac{\mu_1 + \mu_2}{\sigma^2},          & \text{if } x \leq \mu_1 \\
+		\frac{\mu_1 + \mu_2 - 2x}{\sigma^2},     & \text{if } \mu_1 < x < \mu_2 \\
+		\frac{\mu_1 - \mu_2}{\sigma^2},          & \text{if } x \geq \mu_2 \\
+	\end{cases}
+\end{flalign*}
+So if $x$ is outside of the open interval $(\mu_1, \mu_2)$ the conditional error does not depend on the exact value of $x$. If we assume additionally $\mu_2 = \mu_1$ for the Laplacian distribution, then $P(x|\omega_1) = P(x|\omega_2) > 0$ and using Bayes' rule gives
+\[ P(x|\omega_2) P(\omega_2) \leq P(x|\omega_1) P(\omega_1) \Leftrightarrow P(\omega_2) \leq P(\omega_1) \]
 
 
 
