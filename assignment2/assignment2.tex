@@ -46,13 +46,10 @@ WS 2013/2014}}
 		x & = \text{house stands in a high risk area} & \neg x & = \text{house stands in a low risk area}\\
 		P(f) &=0.0005 & P(\neg f)&=0.9995 \\
 		P(x) &=0.04 & P(\neg x) & = 0.96 \\
-		P(x|f) &= 0.8 & P(\neg x|f)=0.2 \\
-		\alpha_1 & = \text{buying insurance} & \alpha_2 & = \text{not buying insurance}
-		\end{flalign*}
-		We estimate the houses value is \EUR{210,000}, since the text states that \EUR{100,000} is less than half the value.
-		\begin{flalign*}
+		P(x|f) &= 0.8 & P(\neg x|f)&=0.2 \\
+		\alpha_1 & = \text{buying insurance} & \alpha_2 & = \text{not buying insurance}\\
 		\lambda(\alpha_1|f)&=1100 \text{\euro} & \lambda(\alpha_1|\neg f)&=1100 \text{\euro}\\
-		\lambda(\alpha_2|f)&=110000 \text{\euro} & \lambda(\alpha_1|\neg f)&=0 \text{\euro}\\
+		\lambda(\alpha_2|f)&=100000 \text{\euro} & \lambda(\alpha_1|\neg f)&=0 \text{\euro}\\
 				\end{flalign*}
 		\begin{enumerate}[label={(\alph*)}]
 		\item				
@@ -66,9 +63,9 @@ WS 2013/2014}}
 		\begin{align*}
 		    P(\neg f|x) &= 1 - P(f|x) = 0.99\\
 			R(\alpha_1|x) &= \lambda(\alpha_1|f)P(f|x) + \lambda(\alpha_1|\neg f)P(\neg f|x) = 1100\text{\euro} * 0.01 + 1100\text{\euro} * 0.99 = 1100\text{\euro}\\
-			R(\alpha_2|x) &= \lambda(\alpha_2|f)P(f|x) + \lambda(\alpha_2|\neg f)P(\neg f|x) = 110000\text{\euro} * 0.01 + 0\text{\euro} * 0.99 = 1100\text{\euro}
+			R(\alpha_2|x) &= \lambda(\alpha_2|f)P(f|x) + \lambda(\alpha_2|\neg f)P(\neg f|x) = 100000\text{\euro} * 0.01 + 0\text{\euro} * 0.99 = 1000\text{\euro}
 		\end{align*}
-		Since $R(\alpha_2|x)=R(\alpha_1|x)$ no option would be more viable than the other.
+		Since $R(\alpha_2|x)<R(\alpha_1|x)$ it would be more viable not to buy an insurance.
 		\item insert text
 	\end{enumerate}
 	\section{Exercise}
