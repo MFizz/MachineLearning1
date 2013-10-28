@@ -6,31 +6,19 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 
-\usepackage[square]{natbib}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{cancel}
 
-\setcounter{tocdepth}{1}
 \usepackage{graphicx}
 
 \usepackage{url}
 \usepackage{eurosym}
 
 
-%\usepackage{tikz}
-%\usetikzlibrary{calc, trees, positioning, arrows, shapes, shapes.multipart, shadows, matrix, decorations.pathreplacing, decorations.pathmorphing}
-
-
-\usepackage{enumitem}
 \usepackage{url}
-\urldef{\mail}\path|mitja.richter@gmail.com|
-%\newcommand{\keywords}[1]{\par\addvspace\baselineskip
-%\noindent\keywordname\enspace\ignorespaces#1}
 
-\renewcommand{\labelenumi}{\arabic{enumi}.}
-\renewcommand{\labelenumii}{\labelenumi\arabic{enumii}.}
-\renewcommand{\labelenumiii}{\labelenumii\arabic{enumiii}.}
 
 
 
@@ -51,32 +39,45 @@
 
 
 \section{Gauging the Risk}
-	 \begin{flalign*} f& = \text{a house will be flooded} & \neg f & = \text{a house won't be flooded}\\
-		x & = \text{house stands in a high risk area} & \neg x & = \text{house stands in a low risk area}\\
-		P(f) &=0.0005 & P(\neg f)&=0.9995 \\
-		P(x) &=0.04 & P(\neg x) & = 0.96 \\
-		P(x|f) &= 0.8 & P(\neg x|f)&=0.2 \\
-		\alpha_1 & = \text{buying insurance} & \alpha_2 & = \text{not buying insurance}\\
-		\lambda(\alpha_1|f)&=1100 \text{\euro} & \lambda(\alpha_1|\neg f)&=1100 \text{\euro}\\
-		\lambda(\alpha_2|f)&=100000 \text{\euro} & \lambda(\alpha_1|\neg f)&=0 \text{\euro}\\
-				\end{flalign*}
-		\begin{enumerate}[label={(\alph*)}]
-		\item
-				Bayes Rule: $$ P(A|B)=\frac{P(B|A)P(A)}{P(B)}$$\\
-				Compute	$P(f|x)$:
-				\begin{align*}
-					P(f|x) = \frac{P(x|f)P(f)}{P(x)} = \frac{0.8 \cdot 0.0005}{0.04} = 0.01
-				\end{align*}
-		\item
-		Compute $R(\alpha_1|x)$ and $R(\alpha_2|x)$:\\
-		\begin{align*}
-		    P(\neg f|x) &= 1 - P(f|x) = 0.99\\
-			R(\alpha_1|x) &= \lambda(\alpha_1|f)P(f|x) + \lambda(\alpha_1|\neg f)P(\neg f|x) = 1100\text{\euro} * 0.01 + 1100\text{\euro} * 0.99 = 1100\text{\euro}\\
-			R(\alpha_2|x) &= \lambda(\alpha_2|f)P(f|x) + \lambda(\alpha_2|\neg f)P(\neg f|x) = 100000\text{\euro} * 0.01 + 0\text{\euro} * 0.99 = 1000\text{\euro}
-		\end{align*}
-		Since $R(\alpha_2|x)<R(\alpha_1|x)$ it would be more viable not to buy an insurance.
-		\item insert text
-	\end{enumerate}
+
+
+\begin{flalign*}
+	f& = \text{a house will be flooded} & \neg f & = \text{a house won't be flooded}\\
+	x & = \text{house stands in a high risk area} & \neg x & = \text{house stands in a low risk area}\\
+	P(f) &=0.0005 & P(\neg f)&=0.9995 \\
+	P(x) &=0.04 & P(\neg x) & = 0.96 \\
+	P(x|f) &= 0.8 & P(\neg x|f)&=0.2 \\
+	\alpha_1 & = \text{buying insurance} & \alpha_2 & = \text{not buying insurance}\\
+	\lambda(\alpha_1|f)&=1100 \text{\euro} & \lambda(\alpha_1|\neg f)&=1100 \text{\euro}\\
+	\lambda(\alpha_2|f)&=100000 \text{\euro} & \lambda(\alpha_1|\neg f)&=0 \text{\euro}\\
+\end{flalign*}
+
+
+\subsection*{a)}
+
+Bayes' formula is
+\[ P(A|B) = \frac{P(B|A)P(A)}{P(B)} \]
+We want to determine the probability that a house in a high risk area will be flooded, i.\,e., we want to calculate $P(f|x)$:
+\[ P(f|x) = \frac{P(x|f)P(f)}{P(x)} = \frac{0.8 \cdot 0.0005}{0.04} = 0.01 \]
+There is a 1\% probability that our house will be flooded next year.
+
+
+
+\subsection*{b)}
+
+We want to compute how much loss we can expect depending on whether we decide to buy insurance or not. Therefore we compute $R(\alpha_1|x)$ and $R(\alpha_2|x)$:
+\begin{align*}
+	P(\neg f|x) &= 1 - P(f|x) = 0.99\\
+	R(\alpha_1|x) &= \lambda(\alpha_1|f)P(f|x) + \lambda(\alpha_1|\neg f)P(\neg f|x) = 1100\text{\euro} \cdot 0.01 + 1100\text{\euro} \cdot 0.99 = 1100\text{\euro}\\
+	R(\alpha_2|x) &= \lambda(\alpha_2|f)P(f|x) + \lambda(\alpha_2|\neg f)P(\neg f|x) = 100000\text{\euro} \cdot 0.01 + 0\text{\euro} \cdot 0.99 = 1000\text{\euro}
+\end{align*}
+Since $R(\alpha_2|x) < R(\alpha_1|x)$ it would be cheaper not to buy an insurance.
+
+
+
+\subsection*{c)}
+
+We feel that the existing calculation matches this group's common sense.
 
 
 
@@ -120,31 +121,37 @@ which violates the assumption $\alpha < 2$.
 
 \section{Gaussian Densities}
 
-\begin{enumerate}[label={(\alph*)}]
-\item
-	\begin{align*}
-	P(\omega_2|x) &\leq P(\omega_1|x)\\
-	\Leftrightarrow \qquad \frac{P(x|\omega_2)P(\omega_2)}{P(x)} &\leq \frac{P(x|\omega_1)P(\omega_1)}{P(x)}\\
-	\Leftrightarrow \qquad P(x|\omega_2)P(\omega_2)&\leq P(x|\omega_1)P(\omega_1)\\
-	\Leftrightarrow \qquad \frac{1}{\sqrt{2\pi}\sigma}e^{ \displaystyle\frac{(x+\mu)^2}{2\sigma^2}}P(\omega_2) &\leq \frac{1}{\sqrt{2\pi}\sigma}e^{\displaystyle \frac{(x-\mu)^2}{2\sigma^2}}P(\omega_1)\\
-	\Leftrightarrow \qquad e^{\displaystyle\frac{(x+\mu)^2}{2\sigma^2}}P(\omega_2) &\leq e^{\displaystyle \frac{(x-\mu)^2}{2\sigma^2}}P(\omega_1)\\
-	\Leftrightarrow \qquad \frac{(x+\mu)^2}{2\sigma^2} + \ln(P(\omega_2)) &\leq \frac{(x-\mu)^2}{2\sigma^2} + \ln(P(\omega_1))\\
-	\Leftrightarrow \qquad -(x+\mu)^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -(x-\mu)^2 + 2\sigma^2\ln(P(\omega_1))\\
-	\Leftrightarrow \qquad -x^2 -x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -x^2+x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_1))\\
-	\Leftrightarrow \qquad -x^2 -x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_2)) &\leq -x^2+x\mu -\mu^2 + 2\sigma^2\ln(P(\omega_1))\\
-	\Leftrightarrow \qquad \ln(P(\omega_2)) &\leq \frac{2x\mu}{2\sigma^2}+\ln(P(\omega_1))\\
-	\Leftrightarrow \qquad P(\omega_2) &\leq e^{\displaystyle \frac{x\mu}{\sigma^2}}P(\omega_1)
-	\end{align*}
-	Therefore:\\
-	\begin{align*}
-		\int_{x=-\infty}^\infty P(error|x)p(x)dx=\int_{x=-\infty}^\infty min[P(\omega_1|x); P(\omega_2|x)]dx=\int_{x=-\infty}^\infty P(\omega_2|x)p(x)dx
-	\end{align*}
-	if $P(\omega_2) \leq e^{\frac{x\mu}{\sigma^2}}P(\omega_1)$.
-	\item If we furthermore also assume $\mu_2 = -\mu_1$ for a Laplacian distribution, we need to make a differentiation.
+
+\subsection*{a)}
+
+Because $P(\text{error}|x) = P(\omega_2|x)$ and the definition of $P(\text{error}|x)$ we know that $P(\omega_2|x) \leq P(\omega_1|x)$. Using Bayes' rule, it holds that
+\[ \frac{P(x|\omega_2)P(\omega_2)}{\cancel{P(x)}} \leq \frac{P(x|\omega_1)P(\omega_1)}{\cancel{P(x)}} \]
+We reformulate this to
+\[ \frac{P(x|\omega_2)}{P(x|\omega_1)} \leq \frac{P(\omega_1)}{P(\omega_2)} \]
+and using the definitions we get
+\[ \frac{\exp{(-(x+\mu)^2 / (2 \sigma^2))}}{\exp{(-(x-\mu)^2 / (2 \sigma^2))}} \leq \frac{P(\omega_1)}{P(\omega_2)} \]
+Applying the logarithm gives
+\[ \frac{1}{2\sigma^2} \left( (x-y)^2 - (x+y)^2 \right) = \frac{1}{2\sigma^2} (-4x\mu) \leq \ln{\frac{P(\omega_1)}{P(\omega_2)}} \]
+If we want the relationship between $P(\omega_2|x)$ and the conditional error to hold, then
+\begin{flalign*}
+	\ln P(\omega_2|x) &\leq \ln P(\omega_1|x) + \frac{2x\mu}{\sigma^2} \Leftrightarrow \\
+	P(\omega_2|x) &\leq e^{2x\mu/\sigma^2} P(\omega_1|x) \\
+\end{flalign*}
+
+
+
+\subsection*{b)}
+
+If we furthermore also assume $\mu_2 = -\mu_1$ for a Laplacian distribution, we need to make a differentiation.
 	\begin{itemize}
 		\item for $x\geq \mu$, condition for $P(\omega_2)$ does not depend on $x$ any more.
 		\item for $x < \mu$, condition for $P(\omega_2)$ does not depend on $\mu$ any more.
 	\end{itemize}
-\end{enumerate}
+
+
+
+%\begin{thebibliograpy}
+%	\bibitem{DHS2000} R. O. Duda, P. E. Hart and D. G. Stork. \emph{Pattern Classification}. 2nd ed. New York, NY, USA: Wiley-Interscience, 2000. ISBN: 0-4710-5669-3
+%\end{thebibliograpy}
 
 \end{document}
