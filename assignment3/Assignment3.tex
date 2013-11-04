@@ -87,13 +87,15 @@ $ p = \frac{5}{7}$.
 	\subsection*{a)} There are several general problems with using non-linear feature mapping into higher dimensions in this situation:
 	\begin{itemize}
 	\item The first problem is the large number of unknown parameters required to learn the gaussian ML-model. With increasing dimension $d$ of the input vector, the estimate of the mean grows linear to a $d$-dimension vector, but the covariance matrix $\Sigma$ ($d \times d)$ is growing quadratically.
-	\item The next problem would be the additional computational load of computing $\phi()$, which is especially grave with a large dataset $D$.
+	\item The next problem would be the additional computational load of computing $\phi(x)$, which is especially grave with a large dataset $D$.
 	\item Furthermore there is the danger of overfitting, since the linear (or quadratic) discriminant is segmenting the training data non-linearly in lower input space. With a noisy dataset this could lead to false classifications.
 	\end{itemize}
 	On the other side this methods produces a linear (or quadratic) discriminant, which makes classification really fast.
 	
 	\subsection*{b)}
-	With a small dataset, the bias of ML can potentially distort results, since ML is only asymptotically unbiased.
+	With a small dataset, the bias of ML can potentially distort results, since ML is only asymptotically unbiased. On the other hand a small dataset reduces the additional load of computing $\phi(x)$
+	
+	\subsection*{c)} If we are getting a linear discriminant with the method described above, changes in the priors should only result in shifts of the boundary hyperplane away from the more likely prior, which should not affect overall complexity or accuracy.
 	
 
 
