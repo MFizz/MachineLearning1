@@ -61,29 +61,97 @@ Again we know that $p<1$
 The probability that the next two tosses are "head" with the given unfair coin is
 $ p = \frac{25}{49}$.
 
+\subsection*{c)}
+We want to find an estimation for the probability $Pr(x)$, where $x$ is defined as $x=(x_1,x_2)$, with $x_1=head$ and $x_2=head$. One idea of Bayesian parameter estimation is to use $Pr(x|D)$ as an estimation for $Pr(x)$.
+We can compute $Pr(x|D)$ with the following equation:
+\begin{equation*}
+Pr(x|D)=\int p(x|\theta)p(\theta|D)d\theta\text{.}
+\end{equation*}
+
+In our case $\theta=p$ and therefore the limits of the integral are $0$ and $1$. We can also apply the Bayes rule to the likelihood $p(\theta|D)$ and obtain:
+\begin{equation*}
+Pr(x|D)=\int _0^1 p(x|p) \frac{Pr(D|p)p(p)}{Pr(D)} dp  \text{.}
+\end{equation*}
+
+Since $p$ comes from a uniform distribution on the interval $[0,1]$, $p(p)=1$. We also know the likelihoods $Pr(D|p)=p^5(1-p)^2$ (from exercise 1a)) and $Pr(x|D)=p^2$ (with the same argumentation as in Exercise 1a)):
+
+This yields:
+
+\begin{equation*}
+Pr(x|D)=\int _0^1 p^2 \frac{p^5(1-p)^2}{Pr(D)} dp  \text{.}
+\end{equation*}
+
+The probability $Pr(D)$ can be computed via 
+\begin{equation*}
+Pr(D)=\int_0^1 Pr(D|p) p(p)dp =\int_0^1 p^5(1-p)^2 dp= \left[ \frac{1}{8} p^8 - \frac{2}{7} p^7 +\frac{1}{6} p^6\right]_0^1 =\frac{1}{168}\text{.}
+\end{equation*}
+
+Inserting this term into the above equation finally leads to:
+
+\begin{equation*}
+Pr(x|D)=168 \int _0^1 p^2 p^5(1-p)^2 dp  =168 \left [  \frac{1}{10}p^{10} - \frac{2}{9}p^9 + \frac{1}{8}p^8 \right]_0^1= \frac{7}{15}\approx 0.47\text{.}
+\end{equation*}
+
+Therefore we estimate $Pr(x)$ to be $\frac{7}{15}$.
+
 \section{Biased Boundaries}
+\subsection*{a)}
+We use the discriminant functions $g_i(x)=\ln (p(x|\omega_i))+\ln(P(\omega_i)), i=1,2$, which in the case of multivariate Gaussian distribution leads to:
+\begin{equation*}
+g_i(x)= -\frac{1}{2}(x-\mu_i)^T\Sigma_i^{-1}(x-\mu_i)+ \ln(P(\omega_i)) -\frac{d}{2} \ln(2 \pi)-\frac{1}{2}\ln \lvert\Sigma_i\rvert\text{.}
+\end{equation*}
+The last two terms in this equation do not depend on $i$ ($\Sigma_i=\sigma^2I$) and can therefore be omitted. We also see that $\Sigma_i ^{-1}=\frac{1}{\sigma^2}I$ so the term for the discriminant functions simplifies to:
+\begin{equation*}
+g_i(x)= -\frac{1}{2 \sigma^2}(x-\mu_i)^T(x-\mu_i)+ \ln(P(\omega_i))=-\frac{1}{2 \sigma^2}(x^Tx-2\mu_i^T x +\mu_i^T \mu_i)+ \ln(P(\omega_i)\text{.}
+\end{equation*}
+
+Again, the term $x^Tx$ does not depend on $i$ and can be ignored. Therefore by introducing $w_i:=\frac{1}{\sigma^2}\mu_i$ and $b_i:=-\frac{1}{2 \sigma^2}\mu_i^T\mu_i + \ln(P(\omega_i))$ we get the following simple expression for $g_i(x)$:
+\begin{equation*}
+g_i(x)=w_i^Tx+b_i\text{.}
+\end{equation*}
+
+We define the dichotomizer to be $g(x):=g_1(x)-g_2(x)$ which leads to:
+\begin{align*}
+g(x)&=w_1^Tx+b_1-w_2^Tx-b_2\\
+&=\frac{1}{\sigma^2}(\mu_1-\mu_2)^Tx+\frac{1}{2 \sigma^2}(\mu_2^T\mu_2 -\mu_1^T\mu_1)+ \ln(P(\omega_1))- \ln(P(\omega_2))
+\end{align*}
+ We can now multiply the term for $g(x)$ with the factor $\sigma^2$, since we are only interested in the decision boundary defined by $g(x)=0$.
+
+\begin{align*}
+g(x)&=(\mu_1-\mu_2)^Tx + \frac{1}{2}(\mu_2^T\mu_2 -\mu_1^T\mu_1)+ \sigma^2(\ln(P(\omega_1))- \ln(P(\omega_2))) \\
+&= (\mu_1-\mu_2)^Tx +\frac{1}{2}(\mu_2^T\mu_2 -\mu_1^T\mu_1)+ \sigma^2\ln(\frac{P(\omega_1)}{P(\omega_2)})\\
+&=(\mu_1-\mu_2)^Tx +\frac{1}{2}(\mu_2^T\mu_2 -\mu_1^T\mu_1)+ \sigma^2\ln(\frac{P(\omega_1)}{1-P(\omega_1)})\\
+&= w^T(x-x_0)\text{,}
+\end{align*}
+where $w=\mu_1-\mu_2$ and $x_0=\frac{1}{2}(\mu_1+\mu_2)-\frac{\sigma^2}{\lVert \mu_1 - \mu_2\rVert_2^2}\ln(\frac{P(\omega_1)}{1-P(\omega_1)})(\mu_1-\mu_2)$.
+
+
 \subsection*{b)}
 	Our Maximum Likelihood function for $P(D_1|\mu_1)$:
 	\[
 	l(\mu_1) = \ln P(D_1|\mu_1) = \sum_{i=1}^n \ln P(x_i|\mu_1)
 	\]
-	Under the Gaussian generative assumtpion we get:
-	\[
-		P(x_i|\mu_1) = \frac{1}{\sqrt{2\pi}\sigma}\exp^{-\frac{1}{2\sigma^2}(x_i-\mu_1)^2}\\
-	\]
-	Applying the logarhitmus for convenience:
-	\[
-		\ln P(x_i|\mu_1) =-\frac{1}{2} \ln 2\pi \sigma -\frac{1}{2\sigma^2}(x_i-\mu_1)^2\\
-	\]
-	Computing the derivate:
-	\[	
-		\frac{d \ln P(x_i|\mu_1)}{d \mu_1} = \frac{1}{\sigma}(x_i- \mu_1)\\
-	\]
-	For the dataset $D$ we get:
-	\[
-		\sum_{i=1}^n \frac{1}{\sigma}(x_i- \hat{\mu}_1) \stackrel{!}{=} 0\\
+	Under the Gaussian generative assumption, we get:
+	\begin{align*}
+		P(x_i|\mu_1) &= \frac{1}{\sqrt{2\pi}\sigma}\exp^{-\frac{1}{2\sigma^2}(x_i-\mu_1)^2}\\
+	\text{Applying the logarithm for convenience:}&\\
+		\ln P(x_i|\mu_1) &=-\frac{1}{2} \ln (2\pi \sigma^2) -\frac{1}{2\sigma^2}(x_i-\mu_1)^2\\
+	\text{Computing the derivate:}&\\
+		\frac{d \ln P(x_i|\mu_1)}{d \mu_1} &= \frac{1}{\sigma^2}(x_i- \mu_1)\\
+	\text{For the dataset $D$ we get:}&\\
+	\sum_{i=1}^n \frac{1}{\sigma^2}(x_i- \hat{\mu}_1) \stackrel{!}{=} 0\\
 	\rightarrow \hat{\mu}_1=\frac{1}{n} \sum_{i=1}^n x_i \qed
-	\]
+	\end{align*}
+
+\subsection*{c)}
+In the univariate case the dichotomizer from exercise 2 a) becomes $g(x)= w(x-x_0)$, where $w=\mu_1-\mu_2$ and $x_0=\frac{1}{2}(\mu_1+\mu_2)-\frac{\sigma^2}{(\mu_1 - \mu_2)}\ln(\frac{P(\omega_1)}{P(\omega_2)})$, therefore the decision boundary is given by 
+\begin{align*}
+0&=(\mu_1-\mu_2)x - (\mu_1-\mu_2) \frac{1}{2}(\mu_1+\mu_2)+(\mu_1-\mu_2)\frac{\sigma^2}{(\mu_1 - \mu_2)}\ln(\frac{P(\omega_1)}{P(\omega_2)})\\
+\stackrel{\mu_1-\mu_2 \neq 0}{\Leftrightarrow} x&=\frac{1}{2}(\mu_1 +\mu_2)-\frac{\sigma^2}{(\mu_1 - \mu_2)}\ln(\frac{P(\omega_1)}{P(\omega_2)})\\
+\end{align*}
+\subsection*{d)}
+
+
 \section{Feature Expansion}
 	\subsection*{a)} There are several general problems with using non-linear feature mapping into higher dimensions in this situation:
 	\begin{itemize}
