@@ -40,7 +40,25 @@
 
 \maketitle
 
+\section{Flipping the Coins}
 
+\subsection*{a)}
+
+\[ Pr (D|p) = \prod_{i=1}^7\ Pr(x_i|p) = p^{\# head} * (1-p)^{\# tail} = p^5 * (1-p)^2 = p^5-p^7 \]
+
+
+
+\subsection*{b)}
+The maximum likelihood yields:
+\[ \nabla Pr (D|p) \stackrel{!}{=} 0 \Leftrightarrow  5p^4 - 7p^6 = 0 \Leftrightarrow p^4(5-7p^2) = 0 \Leftrightarrow p^4 = 0 \lor 5-7p^2 = 0 \]\\
+From our given sequence of events we know that $p\in ]0,1[$\\ 
+\[\Rightarrow p^2 = \frac{5}{7}\]
+Again we know that $p>0$
+\[ \Rightarrow p = + \sqrt{\frac{5}{7}} \]
+\\We are now looking for the probability of the given sequence $D_1 = (x_8,x_9) = (head,head)$:
+\[Pr(D_1|\sqrt{\frac{5}{7}}) = \prod_{i=8}^9\ Pr(x_i|\sqrt{\frac{5}{7}}) =Pr(\{x_8=head\})*Pr(\{x_9 = head\}) = \sqrt{\frac{5}{7}} * \sqrt{\frac{5}{7}} = \frac{5}{7} \]
+The probability that the next two tosses are "head" with the given unfair coin is
+$ p = \frac{5}{7}$.
 
 \section{Biased Boundaries}
 \subsection*{b)}
