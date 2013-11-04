@@ -1,0 +1,72 @@
+\documentclass[paper=a4,fontsize=10pt,DIV11,BCOR10mm]{scrartcl}
+
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{cancel}
+
+\usepackage{graphicx}
+
+\usepackage{url}
+\usepackage{eurosym}
+
+
+\usepackage{url}
+
+
+
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+
+
+
+
+\titlehead{Technische Universität Berlin -- Fachgebiet Maschinelles Lernen\hfill \parbox[t]{2cm}{\includegraphics[width=2cm]{../TU_Logo_kurz_RGB_rot}}}
+
+\begin{document}
+
+\title{Maschinelles Lernen 1 - Assignment 3\\
+\small{Technische Universität Berlin}}
+
+
+\author{\small{Christoph Conrads (315565)}\and \small{Antje Relitz (327289)}  \and \small{Benjamin Pietrowicz (332542)} \and \small{Mitja Richter (324680)} }
+
+\date{WS 2013/2014}
+
+\maketitle
+
+
+
+\section{Biased Boundaries}
+\subsection*{b)}
+	Our Maximum Likelihood function for $P(D_1|\mu_1)$:
+	\[
+	l(\mu_1) = \ln P(D_1|\mu_1) = \sum_{i=1}^n \ln P(x_i|\mu_1)
+	\]
+	Under the Gaussian generative assumtpion we get:
+	\begin{align*}
+		P(x_i|\mu_1) &= \frac{1}{\sqrt{2\pi}\sigma}\exp^{-\frac{1}{2\sigma^2}(x_i-\mu_1)^2}\\
+	\text{Applying the logarhitmus for convenience:}&\\
+		\ln P(x_i|\mu_1) &=-\frac{1}{2} \ln 2\pi \sigma -\frac{1}{2\sigma^2}(x_i-\mu_1)^2\\
+	\text{Computing the derivate:}&\\
+		\frac{d \ln P(x_i|\mu_1)}{d \mu_1} &= \frac{1}{\sigma}(x_i- \mu_1)\\
+	\text{For the dataset $D$ we get:}&\\
+	\sum_{i=1}^n \frac{1}{\sigma}(x_i- \hat{\mu}_1) \stackrel{!}{=} 0\\
+	\rightarrow \hat{\mu}_1=\frac{1}{n} \sum_{i=1}^n x_i \qed
+	\end{align*}
+
+
+
+
+
+
+%\begin{thebibliograpy}
+%	\bibitem{DHS2000} R. O. Duda, P. E. Hart and D. G. Stork. \emph{Pattern Classification}. 2nd ed. New York, NY, USA: Wiley-Interscience, 2000. ISBN: 0-4710-5669-3
+%\end{thebibliograpy}
+
+\end{document}
