@@ -22,6 +22,8 @@
 
 
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator{\tr}{tr}
 
 
 
@@ -40,132 +42,70 @@
 
 \maketitle
 
-\section{Flipping the Coins}
 
+\section{Matrix Calculus}
 
-
-
-\subsection*{b)}
-The maximum likelihood yields:
-\[ \nabla Pr (D|p) \stackrel{!}{=} 0 \Leftrightarrow  5p^4 - 12 p^5 + 7p^6 = 0 \Leftrightarrow p^4(5-12p+7p^2) = 0 \Leftrightarrow p^4 = 0 \lor 5-12p+7p^2 = 0 \]\\
-From our given sequence of events we know that $p\in ]0,1[$\\ 
-\[\Rightarrow 5-12p+ 7p^2 = 0 \Leftrightarrow p^2 - \frac{12}{7}p + \frac{5}{7} = 0 \Leftrightarrow p_{1,2} = \frac{6}{7} \pm \sqrt{\frac{36}{49} - \frac{35}{49}} \Leftrightarrow p_{1,2} = \frac{6}{7} \pm \sqrt{\frac{1}{49}} \Leftrightarrow\]
-\[ p_{1,2} = \frac{6}{7} \pm \frac{1}{7} \Leftrightarrow p_1 = \frac{5}{7} \land p_2 = \frac{7}{7} = 1\]
-Again we know that $p<1$
-\[ \Rightarrow p = \frac{5}{7} \]
-\\We are now looking for the probability of the given sequence $D_1 = (x_8,x_9) = (head,head)$:
-\[Pr(D_1|\frac{5}{7}) = \prod_{i=8}^9\ Pr(x_i|\frac{5}{7}) =Pr(\{x_8=head\})*Pr(\{x_9 = head\}) = \frac{5}{7} * \frac{5}{7} = \frac{25}{49} \]
-The probability that the next two tosses are "head" with the given unfair coin is
-$ p = \frac{25}{49}$.
-
-\subsection*{c)}
-We want to find an estimation for the probability $Pr(x)$, where $x$ is defined as $x=(x_1,x_2)$, with $x_1=head$ and $x_2=head$. One idea of Bayesian parameter estimation is to use $Pr(x|D)$ as an estimation for $Pr(x)$.
-We can compute $Pr(x|D)$ with the following equation:
-\begin{equation*}
-Pr(x|D)=\int p(x|\theta)p(\theta|D)d\theta\text{.}
-\end{equation*}
-
-In our case $\theta=p$ and therefore the limits of the integral are $0$ and $1$. We can also apply the Bayes rule to the likelihood $p(\theta|D)$ and obtain:
-\begin{equation*}
-Pr(x|D)=\int _0^1 p(x|p) \frac{Pr(D|p)p(p)}{Pr(D)} dp  \text{.}
-\end{equation*}
-
-Since $p$ comes from a uniform distribution on the interval $[0,1]$, $p(p)=1$. We also know the likelihoods $Pr(D|p)=p^5(1-p)^2$ (from exercise 1a)) and $Pr(x|D)=p^2$ (with the same argumentation as in Exercise 1a)):
-
-This yields:
-
-\begin{equation*}
-Pr(x|D)=\int _0^1 p^2 \frac{p^5(1-p)^2}{Pr(D)} dp  \text{.}
-\end{equation*}
-
-The probability $Pr(D)$ can be computed via 
-\begin{equation*}
-Pr(D)=\int_0^1 Pr(D|p) p(p)dp =\int_0^1 p^5(1-p)^2 dp= \left[ \frac{1}{8} p^8 - \frac{2}{7} p^7 +\frac{1}{6} p^6\right]_0^1 =\frac{1}{168}\text{.}
-\end{equation*}
-
-Inserting this term into the above equation finally leads to:
-
-\begin{equation*}
-Pr(x|D)=168 \int _0^1 p^2 p^5(1-p)^2 dp  =168 \left [  \frac{1}{10}p^{10} - \frac{2}{9}p^9 + \frac{1}{8}p^8 \right]_0^1= \frac{7}{15}\approx 0.47\text{.}
-\end{equation*}
-
-Therefore we estimate $Pr(x)$ to be $\frac{7}{15}$.
-
-\section{Biased Boundaries}
 \subsection*{a)}
-We use the discriminant functions $g_i(x)=\ln (p(x|\omega_i))+\ln(P(\omega_i)), i=1,2$, which in the case of multivariate Gaussian distribution leads to:
-\begin{equation*}
-g_i(x)= -\frac{1}{2}(x-\mu_i)^T\Sigma_i^{-1}(x-\mu_i)+ \ln(P(\omega_i)) -\frac{d}{2} \ln(2 \pi)-\frac{1}{2}\ln \lvert\Sigma_i\rvert\text{.}
-\end{equation*}
-The last two terms in this equation do not depend on $i$ ($\Sigma_i=\sigma^2I$) and can therefore be omitted. We also see that $\Sigma_i ^{-1}=\frac{1}{\sigma^2}I$ so the term for the discriminant functions simplifies to:
-\begin{equation*}
-g_i(x)= -\frac{1}{2 \sigma^2}(x-\mu_i)^T(x-\mu_i)+ \ln(P(\omega_i))=-\frac{1}{2 \sigma^2}(x^Tx-2\mu_i^T x +\mu_i^T \mu_i)+ \ln(P(\omega_i)\text{.}
-\end{equation*}
 
-Again, the term $x^Tx$ does not depend on $i$ and can be ignored. Therefore by introducing $w_i:=\frac{1}{\sigma^2}\mu_i$ and $b_i:=-\frac{1}{2 \sigma^2}\mu_i^T\mu_i + \ln(P(\omega_i))$ we get the following simple expression for $g_i(x)$:
-\begin{equation*}
-g_i(x)=w_i^Tx+b_i\text{.}
-\end{equation*}
+\subsection*{b)}
 
-We define the dichotomizer to be $g(x):=g_1(x)-g_2(x)$ which leads to:
-\begin{align*}
-g(x)&=w_1^Tx+b_1-w_2^Tx-b_2\\
-&=\frac{1}{\sigma^2}(\mu_1-\mu_2)^Tx+\frac{1}{2 \sigma^2}(\mu_2^T\mu_2 -\mu_1^T\mu_1)+ \ln(P(\omega_1))- \ln(P(\omega_2))
-\end{align*}
- We can now multiply the term for $g(x)$ with the factor $\sigma^2$, since we are only interested in the decision boundary defined by $g(x)=0$.
+\subsection*{c)}
 
-\begin{align*}
-g(x)&=(\mu_1-\mu_2)^Tx + \frac{1}{2}(\mu_2^T\mu_2 -\mu_1^T\mu_1)+ \sigma^2(\ln(P(\omega_1))- \ln(P(\omega_2))) \\
-&= (\mu_1-\mu_2)^Tx +\frac{1}{2}(\mu_2^T\mu_2 -\mu_1^T\mu_1)+ \sigma^2\ln(\frac{P(\omega_1)}{P(\omega_2)})\\
-&=(\mu_1-\mu_2)^Tx +\frac{1}{2}(\mu_2^T\mu_2 -\mu_1^T\mu_1)+ \sigma^2\ln(\frac{P(\omega_1)}{1-P(\omega_1)})\\
-&= w^T(x-x_0)\text{,}
-\end{align*}
-where $w=\mu_1-\mu_2$ and $x_0=\frac{1}{2}(\mu_1+\mu_2)-\frac{\sigma^2}{\lVert \mu_1 - \mu_2\rVert_2^2}\ln(\frac{P(\omega_1)}{1-P(\omega_1)})(\mu_1-\mu_2)$.
+
+
+
+
+\section{Lagrange Multipliers}
+
+\subsection*{a)}
+
+Wir suchen einen Punkt $\theta^*$, der so nahe wie möglich an $m$ ist und $b^T \theta^* < 0$ erfüllt. Falls die Nebenbedingung von $m$ erfüllt ist, wählen wir $\theta^* = m$. Ansonsten erhalten wir diesen Punkt, indem wir in Richtung $-b$ laufen, weil $b$ der Normalenvektor der Hyperebene ist, die zulässige und unzulässige Lösungen voneinander trennt. Dann ist $\theta^* = m - \lambda^* b$, wobei $\lambda^*$ angibt wie weit wir uns von $m$ in Richtung $-b$ bewegen müssen. Es gilt
+\[ b^T \theta = b^T (m - \lambda b) = b^T m - \lambda b^T < 0 \Leftrightarrow \lambda > \frac{b^T m}{b^T b} \]
+Dann wählen wir uns ein minimales $\lambda^*$, das obige Bedingung erfüllt, und erhalten damit $\theta^*$.
+
 
 
 \subsection*{b)}
-	Our Maximum Likelihood function for $P(D_1|\mu_1)$:
-	\[
-	l(\mu_1) = \ln P(D_1|\mu_1) = \sum_{i=1}^n \ln P(x_i|\mu_1)
-	\]
-	Under the Gaussian generative assumption, we get:
-	\begin{align*}
-		P(x_i|\mu_1) &= \frac{1}{\sqrt{2\pi}\sigma}\exp^{-\frac{1}{2\sigma^2}(x_i-\mu_1)^2}\\
-	\text{Applying the logarithm for convenience:}&\\
-		\ln P(x_i|\mu_1) &=-\frac{1}{2} \ln (2\pi \sigma^2) -\frac{1}{2\sigma^2}(x_i-\mu_1)^2\\
-	\text{Computing the derivate:}&\\
-		\frac{d \ln P(x_i|\mu_1)}{d \mu_1} &= \frac{1}{\sigma^2}(x_i- \mu_1)\\
-	\text{For the dataset $D$ we get:}&\\
-	\sum_{i=1}^n \frac{1}{\sigma^2}(x_i- \hat{\mu}_1) \stackrel{!}{=} 0\\
-	\rightarrow \hat{\mu}_1=\frac{1}{n} \sum_{i=1}^n x_i \qed
-	\end{align*}
+
+Wir suchen wieder einen Punkt $\theta^*$, der so nahe wie möglich an $m$ liegt und die gegebene Bedingung erfüllt. Falls $\norm{\mu - m}_2 < 1$ gilt, wählen wir $\theta^* = m$. Ansonsten suchen wir einen Punkt, der sich auf der Geraden $\overrightarrow{m \mu}$ befindet. Somit ist $\theta^* = \mu + \lambda^* (m - \mu)$. Die Nebenbedingung ergibt dann
+\[ \norm{\lambda (m - \mu)}_2 = \abs{\lambda} \norm{m - \mu}_2 < 1 \Leftrightarrow \abs{\lambda} < \frac{1}{\norm{m - \mu}_2} \]
+Wir wollen soweit wie möglich in Richtung von $m$ gehen und wählen $\lambda^* = \max \lambda$.
+
+
 
 \subsection*{c)}
-In the univariate case the dichotomizer from exercise 2 a) becomes $g(x)= w(x-x_0)$, where $w=\mu_1-\mu_2$ and $x_0=\frac{1}{2}(\mu_1+\mu_2)-\frac{\sigma^2}{(\mu_1 - \mu_2)}\ln(\frac{P(\omega_1)}{P(\omega_2)})$, therefore the decision boundary is given by 
-\begin{align*}
-0&=(\mu_1-\mu_2)x - (\mu_1-\mu_2) \frac{1}{2}(\mu_1+\mu_2)+(\mu_1-\mu_2)\frac{\sigma^2}{(\mu_1 - \mu_2)}\ln(\frac{P(\omega_1)}{P(\omega_2)})\\
-\stackrel{\mu_1-\mu_2 \neq 0}{\Leftrightarrow} x&=\frac{1}{2}(\mu_1 +\mu_2)-\frac{\sigma^2}{(\mu_1 - \mu_2)}\ln(\frac{P(\omega_1)}{P(\omega_2)})\\
-\end{align*}
+
+$\theta^T b < 0$ restricts the solution to one side of the given hyperplane $b$ whereas $\norm{\theta - \mu}_2^2 < 1$ restricts the solution to the inside of a sphere with center $\mu$ and radius 1.
+
+
+
+
+
+\section{Principal Component Analysis}
+
+\subsection*{a)}
+
+Es gilt $S_{ii} > 0 \forall i$ und $\lambda_i > 0 \forall i$, weil $S = X X^T$ und $S$ damit positiv definit ist. Außerdem gilt
+\[ \tr S = \sum_i \lambda_i = \lambda_1 + \underbrace{\sum_{i > 1} \lambda_i}_{\geq 0} \]
+und damit ist $\tr S$ eine obere Schranke für $\tr S$.
+
+
+
+\subsection*{b)}
+
+$S$ hat maximal einen von null verschiedenen Eigenwert.
+
+
+
+\subsection*{c)}
+
+OBdA sei $V_1 = \max \{ V_1, \cdots, V_d \}$ und sei $\lambda_1 < V_1$. Sei $e_1 = [1, 0, \cdots, 0]^T \in \mathbb{R}^d$. Dann ist $e_1^T S e_1$ größer als der maximale Eigenwert. Das ist ein Widerspruch, weil $S$ symmetrisch positiv definit ist.
+
+
+
 \subsection*{d)}
 
-
-\section{Feature Expansion}
-	\subsection*{a)} There are several general problems with using non-linear feature mapping into higher dimensions in this situation:
-	\begin{itemize}
-	\item The first problem is the large number of unknown parameters required to learn the gaussian ML-model. With increasing dimension $d$ of the input vector, the estimate of the mean grows linear to a $d$-dimension vector, but the covariance matrix $\Sigma$ ($d \times d)$ is growing quadratically.
-	\item The next problem would be the additional computational load of computing $\phi(x)$, which is especially grave with a large dataset $D$.
-	\item Furthermore there is the danger of overfitting, since the linear (or quadratic) discriminant is segmenting the training data non-linearly in lower input space. With a noisy dataset this could lead to false classifications.
-	\end{itemize}
-	On the other side this methods produces a linear (or quadratic) discriminant, which makes classification really fast.
-	
-	\subsection*{b)}
-	With a small dataset, the bias of ML can potentially distort results, since ML is only asymptotically unbiased. On the other hand a small dataset reduces the additional load of computing $\phi(x)$
-	
-	\subsection*{c)} If we are getting a linear discriminant with the method described above, changes in the priors should only result in shifts of the boundary hyperplane away from the more likely prior, which should not affect overall complexity or accuracy.
-	
-
-
-
+$S$ ist diagonal.
 
 
 
