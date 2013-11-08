@@ -32,7 +32,7 @@
 
 \begin{document}
 
-\title{Maschinelles Lernen 1 - Assignment 3\\
+\title{Maschinelles Lernen 1 - Assignment 4\\
 \small{Technische Universität Berlin}}
 
 
@@ -85,27 +85,42 @@ $\theta^T b < 0$ restricts the solution to one side of the given hyperplane $b$ 
 
 \subsection*{a)}
 
-Es gilt $S_{ii} > 0 \forall i$ und $\lambda_i > 0 \forall i$, weil $S = X X^T$ und $S$ damit positiv definit ist. Außerdem gilt
-\[ \tr S = \sum_i \lambda_i = \lambda_1 + \underbrace{\sum_{i > 1} \lambda_i}_{\geq 0} \]
-und damit ist $\tr S$ eine obere Schranke für $\tr S$.
-
+We first show that the matrix $S=XX^T$, where $X=[x_1-m,\dots, x_n-m]$,  is positive semi-definite. Let $v \in \mathbb{R}^d$ be arbitrary. Then it holds that
+\begin{equation*}
+v^TSv=v^TXX^Tv=\lVert X^Tv\rVert_2^2 \geq 0
+\end{equation*}
+and therefore $S$ is positive semi-definite and has non-negative eigenvalues only.
+We now use the relation $\tr S=\sum_{i=1}^d \lambda_i$, where $\lambda_i$ denotes the $i$th eigenvalue of $S$.
+Hence it follows that
+\begin{equation}\label{glg1}
+\sum_{i=1}^d V_i=\tr S=\sum_{i=1}^d \lambda_i= \lambda_1 + \underbrace{\sum_{i=2}^d \lambda_i}_{\geq 0} \geq \lambda_1\text{.}
+\end{equation}
+Therefore $\sum_{i=1}^n V_i$ is an upper bound for the largest eigenvalue of $S$.
 
 
 \subsection*{b)}
 
-$S$ hat maximal einen von null verschiedenen Eigenwert.
-
+The upper bound in equation \ref{glg1} will only be tight in the case, where $\lambda_i=0$ $\forall i \in \{2,\dots,d\}$. This means the upper bound will be tight if and only if the matrix $S$ has at most one non-zero eigenvalue.
 
 
 \subsection*{c)}
 
-OBdA sei $V_1 = \max \{ V_1, \cdots, V_d \}$ und sei $\lambda_1 < V_1$. Sei $e_1 = [1, 0, \cdots, 0]^T \in \mathbb{R}^d$. Dann ist $e_1^T S e_1$ größer als der maximale Eigenwert. Das ist ein Widerspruch, weil $S$ symmetrisch positiv definit ist.
+Since $S$ is obviously symmetric, we know that there exists an orthonormal basis $(v_1,\dots,v_d)$ of eigenvectors of $S$ corresponding to the eigenvalues $\lambda_1,\dots,\lambda_d$ of $S$. Therefore each vector $w\in \mathbb{R}^d$ can be written as a linear combination of eigenvectors of $S$, $w=\sum_{i=1}^d \alpha_iv_i$, where $\alpha_i \in \mathbb{R} \text{ for } i \in \{1,\dots d\}$.
+Let $w$ have euclidean norm $\lVert w \rVert_2=1$, i.e. $\sum_{i=1}^d \alpha_i^2=1$. Then we obtain
+\begin{equation}\label{glg2}
+w^TSw=(\sum_{i=1}^d \alpha_iv_i)^TS(\sum_{i=1}^d \alpha_iv_i)=(\sum_{i=1}^d \alpha_iv_i)^T(\sum_{i=1}^d \lambda_i \alpha_i v_i)
+=\sum_{i=1}^d \lambda_i\alpha_i^2 \underbrace{v_i^Tv_i}_{=1} \leq \lambda_1 \sum_{i=1}^d\alpha_i^2=\lambda_1\text{.}
+\end{equation} 
 
+Now we assume without loss of generality that $V_1=\max\{V_1,\dots,V_d\}$. We define $e\in \mathbb{R}^d$ to be $e=(1,0,\dots,0)^T$. Obviously the euclidean norm of $e$ is 1. If we insert this into inequality \ref{glg2}, we find that:
+\begin{equation*}
+V_1=e^TSe \leq \lambda_1\text{.}
+\end{equation*}
+Therefore $\max\{V_1,\dots,V_n\}$ is a lower bound on $\lambda_1$.
 
 
 \subsection*{d)}
-
-$S$ ist diagonal.
+ We see that the inequality in equation \ref{glg2} becomes tight, if $\lambda_i=\lambda_1$ $\forall i \in \{2,\dots ,n\}$. Therefore lower bound is tight if all eigenvalues of $S$ are equal.
 
 
 
