@@ -44,15 +44,20 @@
 
 
 \section{Matrix Calculus}
+The annotations are the equation numbers in the matrix cookbook.
 
 \subsection*{a)}
+$ \frac{\partial^2}{\partial x \partial x^T}(x+a)^T \mathbf{W}(x+b) = \frac{\partial^2}{\partial x \partial x^T} ((x+a)^T \mathbf{W}x + (x+a)^T \mathbf{W}b) =  
+\frac{\partial^2}{\partial x \partial x^T} (x^T\mathbf{W}x + a^T\mathbf{W}x + x^T\mathbf{W}b + a^T\mathbf{W}b) \stackrel{(90)}{=} \mathbf{W} + \mathbf{W}^T $
 
 \subsection*{b)}
 
+$ \frac{\partial}{\partial\mathbf{W}}e^{(x+a)^T\mathbf{W}(x+b)} = \frac{\partial}{\partial\mathbf{W}}((x+a)^T\mathbf{W}(x+b)) e^{(x+a)^T\mathbf{W}(x+b)} \stackrel{(62)}{=} (x+a)(x+b)^Te^{(x+a)^T\mathbf{W}(x+b)}$
+
 \subsection*{c)}
 
-
-
+$Tr(\frac{\partial^2}{\partial x\partial x^T} \sum_{p=2}^P \beta_p \norm{x}_p^p ) = 
+\sum_{p=0}^P \beta_p p^2 \norm{x}_p^p$
 
 
 \section{Lagrange Multipliers}
