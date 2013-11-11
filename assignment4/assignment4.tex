@@ -56,8 +56,26 @@ $ \frac{\partial}{\partial\mathbf{W}}e^{(x+a)^T\mathbf{W}(x+b)} = \frac{\partial
 
 \subsection*{c)}
 
-$Tr(\frac{\partial^2}{\partial x\partial x^T} \sum_{p=2}^P \beta_p \norm{x}_p^p ) = 
+$\tr(\frac{\partial^2}{\partial x\partial x^T} \sum_{p=2}^P \beta_p \norm{x}_p^p ) = 
 \sum_{p=0}^P \beta_p p^2 \norm{x}_p^p$
+
+Version von Antje:
+
+Since $\tr(A)=\sum_{k=1}^d a_{kk}$, we only have to compute terms of the from $\frac{\partial^2}{\partial x_k\partial x_k}$ for all $k=1,..,d$. Let $k\in\{1,\dots,d\}$ be arbitrary.
+
+
+\begin{align*}
+\frac{\partial^2}{\partial x_k\partial x_k} \sum_{p=2}^P \beta_p \norm{x}_p^p &=\frac{\partial^2}{\partial x_k\partial x_k}\sum_{p=2}^P \beta_p \sum_{i=1}^d \lvert x_i \rvert^p =\frac{\partial}{\partial x_k}\sum_{p=2}^P \beta_p \cdot p \cdot \lvert x_k\rvert^{p-1} \frac{x_k}{\lvert x_k\rvert}\\
+&=\frac{\partial}{\partial x_k}\sum_{p=2}^P \beta_p \cdot  p \cdot \lvert x_k\rvert^{p-2} x_k \\
+&=\sum_{p=2}^P \beta_p \cdot  p \cdot (p-2) \cdot \lvert x_k\rvert^{p-3}\frac{x_k}{\lvert x_k\rvert}  x_k +p \cdot \lvert x_k\rvert^{p-2}\\
+&=\sum_{p=2}^P \beta_p \cdot  p \cdot (p-2) \cdot \lvert x_k\rvert^{p-4}\cdot x_k^2 +p \cdot \lvert x_k\rvert^{p-2}\text{.}
+\end{align*}
+This differentiation is only valid for the case $x_k \neq 0$.
+
+If we insert this into the equation for the trace we obtain
+\begin{equation*}
+\tr(\frac{\partial^2}{\partial x\partial x^T} \sum_{p=2}^P \beta_p \norm{x}_p^p )=\sum_{k=1}^d\sum_{p=2}^P \beta_p \cdot p \cdot (p-2) \cdot \lvert x_k\rvert^{p-4}\cdot x_k^2 +p \cdot \lvert x_k\rvert^{p-2}\text{.}
+\end{equation*}
 
 
 \section{Lagrange Multipliers}
