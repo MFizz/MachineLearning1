@@ -86,7 +86,7 @@ If we insert this into the equation for the trace we obtain
 
 \subsection*{a)}
 
-Wir suchen einen Punkt $\theta^*$, der so nahe wie möglich an $m$ ist und $b^T \theta^* < 0$ erfüllt. Falls die Nebenbedingung von $m$ erfüllt ist, wählen wir $\theta^* = m$. Ansonsten erhalten wir diesen Punkt, indem wir in Richtung $-b$ laufen, weil $b$ der Normalenvektor der Hyperebene ist, die zulässige und unzulässige Lösungen voneinander trennt. Dann ist $\theta^* = m - \lambda^* b$, wobei $\lambda^*$ angibt wie weit wir uns von $m$ in Richtung $-b$ bewegen müssen. Es gilt
+Wir suchen einen Punkt $\theta^*$, der so nahe wie möglich an $m$ ist und $b^T \theta^* < 0$ erfüllt. Ist $b = 0$, existiert keine Lösung, deswegen nehmen wir $b \neq 0$ an. Falls die Nebenbedingung von $m$ erfüllt ist, wählen wir $\theta^* = m$. Ansonsten erhalten wir diesen Punkt, indem wir in Richtung $-b$ laufen, weil $b$ der Normalenvektor der Hyperebene ist, die zulässige und unzulässige Lösungen voneinander trennt. Dann ist $\theta^* = m - \lambda^* b$, wobei $\lambda^*$ angibt wie weit wir uns von $m$ in Richtung $-b$ bewegen müssen. Es gilt
 \[ b^T \theta = b^T (m - \lambda b) = b^T m - \lambda b^T < 0 \Leftrightarrow \lambda > \frac{b^T m}{b^T b} \]
 Dann wählen wir uns ein minimales $\lambda^*$, das obige Bedingung erfüllt, und erhalten damit $\theta^*$.
 
@@ -102,7 +102,7 @@ Wir wollen soweit wie möglich in Richtung von $m$ gehen und wählen $\lambda^* 
 
 \subsection*{c)}
 
-$\theta^T b < 0$ restricts the solution to one side of the given hyperplane $b$ whereas $\norm{\theta - \mu}_2^2 < 1$ restricts the solution to the inside of a sphere with center $\mu$ and radius 1.
+$\theta^T b < 0$ restricts the solution to one side of the given hyperplane $b$ whereas $\norm{\theta - \mu}_2^2 < 1$ restricts the solution to the inside of a sphere with center $\mu$ and radius 1. $\theta^*$ kann dann als neuer gewichteter Datenpunkt interpretiert werden, indem wir bei a) für den Eintrag $\mu'_i = \theta^*_i$ als $\mu'_i = \mu + b_i / \lambda^*$ betrachten. Je größer der Eintrag in $b$, desto größer die Änderung im Vergleich zu $\mu$. Analog ist bei $b)$ die gewichtete Änderung $\lambda^* (m - \mu)$, also $\mu'_i \approx \mu + (m - \mu)_i / \norm{m - \mu}_2$.
 
 
 
