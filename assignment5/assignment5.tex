@@ -126,9 +126,11 @@ which is maximal for the largest eigenvalue of $M$.
 
 \subsection*{d)}
 
-Let $v$ be an eigenvector corresponding to an eigenvalue $\lambda$ of $S_W^{-1} S_B$. Then
-\[ J(v) = \frac{v^T S_B v}{v^T S_W v} = \frac{v^T S_B v}{v^T S_W (S_W^{-1} S_B v / \lambda)} = \lambda \frac{v^T S_B v}{v^T S_B v} = \lambda \]
-i.\,e., if $\lambda$ is the largest eigenvalue then $J$ is maximal.
+The function $J$ computes the eigenvalue $\lambda$ belonging to the equation
+\[ S_B w = \lambda S_W w \]
+If we multiply both sides with $S_W^{-1}$ we see that eigenvectors and eigenvalues remain unchanged. Therefore the largest eigenvalue of this problem
+\[ S_W^{-1} S_B w = \lambda w \]
+is also the maximizer of the generalized Rayleigh Quotient function $J(w)$.
 
  
 %\begin{thebibliograpy}
