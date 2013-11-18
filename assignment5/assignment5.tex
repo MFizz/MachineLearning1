@@ -43,7 +43,7 @@
 \maketitle
 
 
-\section*{Probabilistic PCA}
+\section{Probabilistic PCA}
 \subsection*{a)}
 We want to show that $x \sim \mathcal{N}(\mu,C)$. In the proof we use the fact that the characteristic function of a multivariate Gaussian distribution $y \sim \mathcal{N}(\mu_0,\Sigma_0)$ is given by 
 \begin{equation*}
@@ -85,6 +85,51 @@ holds, every eigenvector of $WW^T$ is also an eigenvector of $C$. Since $C$ is o
 The complexity of $WW^T$ (and therefore the complexity of $C$ as well) increases with increasing $q$. This is due to the fact that we can interprete $WW^T$ as a multiple of the covariance matrix of measured datapoints $[w_1,\dots, w_q]=W$. As $q$ increases, the number of data points increases and the complexity of the covariance matrix $WW^T$ increases.\\
 
 The idea behind probabilistic PCA is that the $d$-dimensional observed data is actually linearly dependent on some $q$-dimensional random distribution (and shifted by $\mu$ and falsified by some noise). Therefore it does not make sense to choose $q$ bigger or equal than $d$, since then we would try to explain our $d$-dimensional observation by a multivariate random distribution of dimension $d$ or more. This would lead to overfitting and therefore $q$ should be chosen to be smaller than $d$.
+
+
+
+
+\section{Generalized Rayleigh Quotient}
+
+\subsection*{a)}
+
+Let $S_W, S_B \in \mathbb{R}^{d,d}$ where $S_W$ is symmetric positive definite. Let $A \in \mathbb{R}^{d,d}$ so that $A^T A = S_W$. Then
+\[ J(w) = \frac{w^T S_B w}{w^T S_W w} = \frac{w^T S_B w}{(w^T A^T) (A w)} = \frac{w^T S_B w}{(A w)^T (A w)} \]
+Let $v := A w$, then
+\[ \bar{J}(v) = \frac{w^T A^T A^{-T} S_B A^{-1} A w}{v^T v} = \frac{v^T A^{-T} S_B A^{-1} v}{v^T v} = \frac{v^T M v}{v^T v} \]
+where $M := A^{-T} S_B A^{-1}$.
+
+
+
+\subsection*{b)}
+
+We assume that there is a maximum. Let $w \neq 0$ be a maximizer of $\bar{J}$ and let $v = w / \norm{w} \Rightarrow \norm{v} = 1$. Thus
+\[ \max_u \bar{J}(u) = \bar{J}(w) = \frac{w^T M w}{w^T w} = \frac{\norm{w}^2 v^T M v}{\norm{w}^2 v^T v} = \frac{v^T M v}{v^T v} = \bar{J}(v) \]
+Therefore $v$ is a maximizer as well.
+
+
+
+\subsection*{c)}
+
+Using b) we look for vectors $v$ that maximize $\bar{J}$ subject to $\norm{v}_2 = 1$. Because the scaling of the vector has no influence on the function value $\bar{J}$ we choose $f(x) = x^T M x$ and $g(x) = x^T x - 1$. We are looking for
+\[ \max_v f(v) - \lambda g(v) \text{ subject to } g(v) = 0 \]
+The derivatives give
+\begin{flalign*}
+	&\frac{\partial f}{\partial v} = 2 M v \\
+	&\frac{\partial g}{\partial v} = 2 v \\
+\end{flalign*}
+A necessary condition for the maximum is therefore
+\[ 2 M v - 2 \lambda v = 0 \Leftrightarrow M v = \lambda v \]
+which is maximal for the largest eigenvalue of $M$.
+
+
+
+\subsection*{d)}
+
+Let $v$ be an eigenvector corresponding to an eigenvalue $\lambda$ of $S_W^{-1} S_B$. Then
+\[ J(v) = \frac{v^T S_B v}{v^T S_W v} = \frac{v^T S_B v}{v^T S_W (S_W^{-1} S_B v / \lambda)} = \lambda \frac{v^T S_B v}{v^T S_B v} = \lambda \]
+i.\,e., if $\lambda$ is the largest eigenvalue then $J$ is maximal.
+
  
 %\begin{thebibliograpy}
 %	\bibitem{DHS2000} R. O. Duda, P. E. Hart and D. G. Stork. \emph{Pattern Classification}. 2nd ed. New York, NY, USA: Wiley-Interscience, 2000. ISBN: 0-4710-5669-3
