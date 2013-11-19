@@ -134,6 +134,7 @@ If we multiply both sides with $S_W^{-1}$ we see that eigenvectors and eigenvalu
 is also the maximizer of the generalized Rayleigh Quotient function $J(w)$.
 
 \section{Extending Fisher Linear Discriminant}
+
 \subsection*{a)}
 Since the class means lie equally spaced on a one-dimensional line with most within-class variance othogonal to that line, there are two possible influences in this example. First of all we have three elliptic planes that are connected only through their middlepoint by that line. The line is orthogonal to these elliptic planes. The size of the ellipctic planes may vary as well as the distance between those planes with the restriction that the outer planes have the same distance to the inner plane. \\
 
@@ -149,7 +150,7 @@ The expected behavior is the same as in the first example since the spatial orie
 
 \subsection*{c)}
 The class means are at the corners of an isosecles triangle with small distinct angle. This means again that the inner class means $m_2$, the one at corner with the big angle, has the distance $d$ to the other class means $m_1$ and $m_3$, because we have an isoscele triangle. While the outer classes, the ones at the small distinct angle, have the distance $h$ to each other. We define the distance from $m_2$ to the line $h$ as $a$. The between-class variance for the case between class 1 and 3 is the only unknown distance with respect to $d$. Having an isosceles triangle makes the median line of $h$ the distance from $h$ to $m_2$ our defined $a$. Additionally our median line $a$ separates the triangle into two rectangular triangles, which means we can use the Pythagorean theorem. We know that $ d^2 = (\frac{h}{2})^2 + a^2$. For $\lim_{a \to 0} \frac{h}{2} = d \rightarrow \lim_{a \to 0} h = 2d $ and we have a one-dimensional line with all of our class means on that line with the distance $2d$ between the class means $m_1$ and $m_3$. Therefore we can assume $\lim_{a \to 0}h \approx 2d$. We can make this assumption $a to 0$ because we have small distinct angles. This leads to the same result as in example 1 $S_B \approx 6d^2$.
-Again we have well-balanced classes which also leads to the same result as in example 1, that $S_W \approx C \cdot S_i$ for any class $i$.
+Again, we have well-balanced classes which also leads to the same result as in example 1, that $S_W \approx C \cdot S_i$ for any class $i$.
 
  
 %\begin{thebibliograpy}
