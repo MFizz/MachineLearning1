@@ -139,7 +139,19 @@ is also the maximizer of the generalized Rayleigh Quotient function $J(w)$.
 Since the class means lie equally spaced on a one-dimensional line with most within-class variance othogonal to that line, there are two possible influences in this example. First of all we have three elliptic planes that are connected only through their middlepoint by that line. The line is orthogonal to these elliptic planes. The size of the ellipctic planes may vary as well as the distance between those planes with the restriction that the outer planes have the same distance to the inner plane. \\
 
 The expected behavior in the extension is as follows:\\
-We assume that our data is centralized with respect to the inner plane and the one-dimensional line is the x-axis itself. Therefore the distance to the other planes is $d$. With respect to our coordinate system the centerpoint of the first plane has the x-coordinate $-d$, the centerpoint of the second plane has the x-coordinate $0$ and the centerpoint of the third plane has the x-coordinate $d$. When we take a look at the between-class variance \mbox{$S_B = \sum_{i=1}^C\sum_{j=1}^C\left\Vert m_i - m_j \right\Vert^2 \cdot 1_{i>j}$} and we know that only the x-coordinates differ, we ultimatively know that: \[S_B = \left\Vert -d - 0 \right\Vert^2 + \left\Vert -d - d \right\Vert^2 + \left\Vert 0 - d\right\Vert^2 = d^2 + 4d^2 + d^2 = 6d^2 .\] This means our between-class variance grows quadratically with the distance $d$.\\
+We assume that our data is centralized with respect to the inner plane and the one-dimensional line is the x-axis itself. Therefore the distance to the other planes is $d$. With respect to our coordinate system the centerpoint of the first plane has the x-coordinate $-d$, the centerpoint of the second plane has the x-coordinate $0$ and the centerpoint of the third plane has the x-coordinate $d$. When we take a look at the between-class variance \mbox{$S_B = \sum_{i=1}^C\sum_{j=1}^C (m_i - m_j)(m_i - m_j)^T \cdot 1_{i>j}$} and we know that only the x-coordinates differ, we ultimatively know that: \begin{align*}
+S_B &= (\begin{pmatrix} d \\0 \\ \end{pmatrix} - \begin{pmatrix} 0 \\ 0 \\ \end{pmatrix})(\begin{pmatrix} d \\0 \\ \end{pmatrix} - \begin{pmatrix} 0 \\ 0 \\ \end{pmatrix})^T 
++(\begin{pmatrix} d \\0 \\ \end{pmatrix} - \begin{pmatrix} -d \\ 0 \\ \end{pmatrix})(\begin{pmatrix} d \\0 \\ \end{pmatrix} - \begin{pmatrix} -d \\ 0 \\ \end{pmatrix})^T  \\ 
+& 
++(\begin{pmatrix} 0 \\0 \\ \end{pmatrix} - \begin{pmatrix} -d \\ 0 \\ \end{pmatrix})(\begin{pmatrix} 0 \\0 \\ \end{pmatrix} - \begin{pmatrix} -d \\ 0 \\ \end{pmatrix})^T 
+=
+\begin{pmatrix} d \\0 \\ \end{pmatrix}\begin{pmatrix} d \\0 \\ \end{pmatrix}^T +
+\begin{pmatrix} 2d \\0 \\ \end{pmatrix}\begin{pmatrix} 2d \\0 \\ \end{pmatrix}^T +
+\begin{pmatrix} d \\0 \\ \end{pmatrix}\begin{pmatrix} d \\0 \\ \end{pmatrix}^T 
+\\ 
+&=
+d^2 + 4d^2 + d^2 = 6d^2.
+\end{align*} This means our between-class variance grows quadratically with the distance $d$.\\
 
 The within-class variance is defined as \mbox{$S_W = \sum_{i=1}^C S_i$, where $S_i = \sum_{k=1}^n (x_{k,i} -m_i)(x_{k,i} - m_i)^T $}. This means we have a sum of a sum. Since we have well-balanced classes the within-class variance is in the same order of magnitude and therefore does not differ too much. So the behavior in the sum should be $S_W \approx C \cdot S_i$ for any given class $i$.
 
