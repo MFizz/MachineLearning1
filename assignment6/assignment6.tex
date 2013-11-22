@@ -50,6 +50,47 @@
 
 \section{Independence and Correlation}
 
+I am renaming the variables from the exercise, since the used notation does not make sense to me. 
+
+Let $X\sim\mathcal{N}(0,1)$ and $Y=WX$, $P(W=1)=0.5, P(W=-1)=0.5$.
+ 
+\subsection*{a)}
+
+
+
+\subsection*{b)}
+The density function of $X$ is given by $f_X(x)=\frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}x^2}$ and the distribution function of $X$ is given by $F_X(x)=P(X\leq x)=\int\limits_{-\infty}^{x} \frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}z^2}dz$.
+Since $Y=WX$ we have:
+\begin{align*}
+F_Y(y)&=F_{WX}(y)=P(WX\leq y)\\
+&= P(WX\leq y|W=1)\cdot P(W=1)+P(WX\leq y|W=-1)\cdot P(W=-1)\\
+&= 0.5 \cdot P(X\leq y)+ 0.5 \cdot P(-X\leq y)\\
+&= 0.5 \cdot P(X\leq y)+ 0.5 \cdot P(X \geq -y)\\
+&= 0.5 \cdot \int\limits_{-\infty}^{y} \frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}z^2}dz+ 0.5 \cdot \int\limits_{-y}^{\infty} \frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}z^2}dz\\
+\end{align*}
+Since $\frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}z^2}$ is symmetric with respect to the y-axis, we can change the integration boundaries in the second integral from $[-y,\infty)$ to $(-\infty,y]$, which yields:
+
+\begin{align*}
+F_Y(y)&= 0.5 \cdot \int\limits_{-\infty}^{y} \frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}z^2}dz+ 0.5 \cdot \int\limits_{-\infty}^{y} \frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}z^2}dz\\
+F_Y(y)&= \int\limits_{-\infty}^{y} \frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}z^2}dz
+\end{align*}
+
+This is the probability distribution function of a standardized normal distributed random variable and therefore $Y\sim\mathcal{N}(0,1)$.
+
+\subsection*{c)}
+We want to show $Cov(X,Y)=0$. We assume that $X$ and $W$ are independent and therefore $W$ and $X^2$ are independent and thus $\mathbb{E}[WX^2]=\mathbb{E}[W]\mathbb{E}[X^2]$. In addition we know that $\mathbb{E}[X^2]=Var(X)=1$ and $\mathbb{E}[W]=0$. We obtain
+\begin{equation*}
+Cov(X,Y)=\mathbb{E}[XY]=\mathbb{E}[WX^2]=\mathbb{E}[W]\mathbb{E}[X^2]=0\cdot 1=0
+\end{equation*}
+and therefore $X$ and $Y$ are uncorrelated.
+
+
+\subsection*{d)}
+We have to check, if $P(Y\leq y|X \leq x)=P(Y \leq y)$ holds for all $x$ and $y$. Since we want to construct a counter example, we can choose $x$ and $y$ arbitrarily and show that the equality does not hold. We know that $ P(Y \leq -1)<P(Y \leq 0)=0.5$ and therefore
+\begin{equation*}
+P(Y\leq -1|X \leq -1)=P(WX \leq -1|X\leq -1)=P(W=1)=0.5\neq P(Y \leq -1).
+\end{equation*}
+As a result, $X$ and $Y$ are not independent.
 
 
 \section{Maximum Entropy Distribution}
