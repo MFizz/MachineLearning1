@@ -154,21 +154,9 @@ und $s(x)$ ist quadratisch in $x$.
 
 \subsection*{c)}
 
-Weil $s(x)$ symmetrisch ist, ist $p(x)$ auch symmetrisch und damit gilt $\mathbb{E}[x] = 0$.
-Wir behaupten nun, dass $p(x)$ die Wahrscheinlichkeitsdichte einer Gaussverteilung ist, also
-\begin{flalign*}
-	p(x) &= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left(-\frac{x^2}{2\sigma^2} \right) \\
-\end{flalign*}
-Der Faktor $\sqrt{2 \pi \sigma^2}^{-1}$ kann auch in der Form $e^y$ ausgedrückt werden:
-\begin{flalign*}
-	&= \exp \left( \ln \frac{1}{\sqrt{2 \pi \sigma^2}} \right) \exp \left( -\frac{x^2}{2\sigma^2} \right) \\
-	&= \exp(-0.5 \ln(2 \pi \sigma^2)) \exp \left(-\frac{x^2}{2\sigma^2} \right) \\
-	&= \exp \left( \frac{\ln(2\pi \sigma^2)}{4 \sigma^2} x^2 \right) \\
-	&= \exp(-\lambda_2 x^2) \\
-\end{flalign*}
-Dann ist
-\[ \lambda_2 = -\frac{\ln(2 \pi \sigma^2)}{4 \sigma^2} \]
-und $p(x)$ kann eine Gaussverteilung mit Erwartungswert null und Varianz $\sigma^2$ sein.
+Weil $s(x)$ symmetrisch ist, ist $p(x)$ auch symmetrisch und damit gilt $\mathbb{E}[x] = 0$. Wir setzen
+\[ \lambda_2 = \frac{1}{2 \sigma^2} \]
+und ergänzen $p(x)$ um den Faktor $\sqrt{2 \pi \sigma^2}^{-1}$.
 
 
 
