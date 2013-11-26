@@ -181,21 +181,17 @@ E[G(y)] &= E[ay^2 + by + c] = aE[y^2] + b E[y] + c \stackrel{E[y] = 0}{=} aE[y^2
 \end{align}
 
 \subsection*{b)}
+We are supposed to show that there are multiple values $z = \max_y J(y)$ that are solutions of the optimization problem. Let $G(y) = a y^2 + b y + c$. Using the result from 3a) and the fact that $\nu ~ \mathcal{N}(0, 1)$ we get
+\[ \max_y J(y) = (\mathbb{E}[G(y)] - \mathbb{E}[G(\nu)])^2 = (a \text{Var}[y] + c - a \text{Var}[\nu] + c)^2 = (a \sigma^2 - a + 2 c)^2 \]
+and then the solution is dependent on the parameters $a$, $c$.
+
+\subsection*{c)}
 \begin{align*}
 E[f(y)] = \int_{-\infty}^{\infty}f(y)p(y)\mathrm{d}y & \quad\quad
 \frac{\partial E[f(y)]}{\partial y} = f(y)p(y)\\
 p(y) \stackrel{E[y] = 0}{=} \frac{1}{\sqrt{2\pi}\sigma} exp{(-\frac{y^2}{2\sigma^2})} & \quad\quad p'(y) = - \frac{y}{\sqrt{2\pi}\sigma^3} exp{(-\frac{y^2}{2\sigma^2})}\\
 \end{align*}
-
-$max_y J(y) \implies \frac{\partial J(y)}{\partial y} \stackrel{!}{=} 0$
-\begin{align*}
-\frac{\partial J(y)}{\partial y} &= 2(E[G(y)]-E[G(\nu)]) \cdot G(y)p(y) \cdot \big(g(y)p(y) + G(y)p'(y)\big)\\
-&= 2(E[ay^2 + by + c]-E[G(\nu)])\cdot (ay^2+by+c)p(y) \cdot \big((2ay+b)p(y) + (ay^2+by+c)p'(y)\big) \\
-&\stackrel{E[y] = 0}{=} 2(aE[y^2] + c-E[G(\nu)])\cdot (ay^2+by+c)p(y) \cdot \big((2ay+b)p(y) + (ay^2+by+c)p'(y)\big) \\
-&= 2(aE[y^2] + c-E[G(\nu)])\cdot \big((ay^2+by+c)(2ay+b)p^2(y) + (ay^2+by+c)(ay^2+by+c)p'(y)p(y) \big) \\
-\end{align*}
-
-\subsection*{c)}
+Using these formulas we receive this as result:
 \begin{align*}
 J(w) &= (E[G(w^Tx)] - E[G(\nu)])^2 \\
 \frac{\partial J}{\partial w} &= 2(E[G(w^Tx)] - E[G(\nu)]) \cdot G(w^Tx)p(w^Tx) \cdot \big( xg(w^Tx) p(w^Tx) + xG(w^Tx)p'(w^Tx)\big)
@@ -209,6 +205,7 @@ J(w) &= (E[G(w^Tx)] - E[G(\nu)])^2 \\
 =& 2(aE[w^Txx^Tw] + bE[w^Tx] + c - E[G(\nu)]) \cdot (a(w^Tx)(w^Tx)^T + b(w^Tx) + c)p(w^Tx)\\&
  \cdot \bigg( x\big(2a(w^Tx)x + bx\big) p(w^Tx) + x(a(w^Tx)(w^Tx)^T + b(w^Tx) + c)p'(w^Tx)\bigg) \\
 \end{align*}
+Unfortunately this computation leads us not to the wanted result. But we can say, that the dependence only on the covarince of x is a bad behavior. x is fixed and our function $J(w)$ is dependent on $w$, that is why we wish our dependence only to be in relation with its variable, not with other constants.
 
 
 
