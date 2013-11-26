@@ -170,6 +170,46 @@ Wir wissen, dass $H(x)$ maximiert wird, wenn $x$ normalverteilt ist. Dann gilt $
 
 \section{Approximations of Negentropy}
 
+\subsection*{a)}
+
+We define any quadratic function $G(y) = ay^2 + by + c$, with arbitrary constants $a,b,c \in \mathbb{R}$, take our assumption $E[y] = 0$ and begin to transform:
+
+\begin{align}
+E[G(y)] &= E[ay^2 + by + c] = aE[y^2] + b E[y] + c \stackrel{E[y] = 0}{=} aE[y^2] + c  \\
+\text{Definition of Var: }Var[y] &= E[y^2] - E^2[y] \stackrel{E[y] = 0}{=} E[y^2] \\
+\text{Using (2) in (1): } E[G(y)] &= aE[y^2] + c = aVar[y] + c
+\end{align}
+
+\subsection*{b)}
+\begin{align*}
+E[f(y)] = \int_{-\infty}^{\infty}f(y)p(y)\mathrm{d}y & \quad\quad
+\frac{\partial E[f(y)]}{\partial y} = f(y)p(y)\\
+p(y) \stackrel{E[y] = 0}{=} \frac{1}{\sqrt{2\pi}\sigma} exp{(-\frac{y^2}{2\sigma^2})} & \quad\quad p'(y) = - \frac{y}{\sqrt{2\pi}\sigma^3} exp{(-\frac{y^2}{2\sigma^2})}\\
+\end{align*}
+
+$max_y J(y) \implies \frac{\partial J(y)}{\partial y} \stackrel{!}{=} 0$
+\begin{align*}
+\frac{\partial J(y)}{\partial y} &= 2(E[G(y)]-E[G(\nu)]) \cdot G(y)p(y) \cdot \big(g(y)p(y) + G(y)p'(y)\big)\\
+&= 2(E[ay^2 + by + c]-E[G(\nu)])\cdot (ay^2+by+c)p(y) \cdot \big((2ay+b)p(y) + (ay^2+by+c)p'(y)\big) \\
+&\stackrel{E[y] = 0}{=} 2(aE[y^2] + c-E[G(\nu)])\cdot (ay^2+by+c)p(y) \cdot \big((2ay+b)p(y) + (ay^2+by+c)p'(y)\big) \\
+&= 2(aE[y^2] + c-E[G(\nu)])\cdot \big((ay^2+by+c)(2ay+b)p^2(y) + (ay^2+by+c)(ay^2+by+c)p'(y)p(y) \big) \\
+\end{align*}
+
+\subsection*{c)}
+\begin{align*}
+J(w) &= (E[G(w^Tx)] - E[G(\nu)])^2 \\
+\frac{\partial J}{\partial w} &= 2(E[G(w^Tx)] - E[G(\nu)]) \cdot G(w^Tx)p(w^Tx) \cdot \big( xg(w^Tx) p(w^Tx) + xG(w^Tx)p'(w^Tx)\big)
+\end{align*}
+
+\subsection*{d)}
+\begin{align*}
+\frac{\partial J}{\partial w} =& 2(E[G(w^Tx)] - E[G(\nu)]) \cdot G(w^Tx)p(w^Tx) \cdot \big( xg(w^Tx) p(w^Tx) + xG(w^Tx)p'(w^Tx)\big) \\
+=& 2(E[a(w^Tx)(w^Tx)^T + b(w^Tx) + c] - E[G(\nu)]) \cdot (a(w^Tx)(w^Tx)^T + b(w^Tx) + c)p(w^Tx)\\&
+ \cdot \bigg( x\big(2a(w^Tx)x + bx\big) p(w^Tx) + x(a(w^Tx)(w^Tx)^T + b(w^Tx) + c)p'(w^Tx)\bigg) \\
+=& 2(aE[w^Txx^Tw] + bE[w^Tx] + c - E[G(\nu)]) \cdot (a(w^Tx)(w^Tx)^T + b(w^Tx) + c)p(w^Tx)\\&
+ \cdot \bigg( x\big(2a(w^Tx)x + bx\big) p(w^Tx) + x(a(w^Tx)(w^Tx)^T + b(w^Tx) + c)p'(w^Tx)\bigg) \\
+\end{align*}
+
 
 
 %\begin{thebibliograpy}
